@@ -8,236 +8,207 @@
   <style>
     :root {
       --bg: #ffffff;
-      --text: #1a1a1a;
-      --muted: #52525b;
-      --border: #e2e8f0;
-      --card: #ffffff;
+      --text: #111111;
+      --muted: #666666;
+      --border: #e5e7eb;
+      --card: #f8fafc;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
-      --maxw: 1000px;
-      --radius: 12px;
+      --maxw: 1080px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #fcfcfd;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
     }
 
-    a { color: var(--accent); text-decoration: none; transition: 0.2s; }
-    a:hover { color: #1d4ed8; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     .container {
-      width: min(var(--maxw), calc(100% - 48px));
+      width: min(var(--maxw), calc(100% - 32px));
       margin: 0 auto;
     }
 
-    /* Hero Section */
     .hero {
-      padding: 80px 0 40px;
+      padding: 56px 0 24px;
       text-align: center;
     }
 
     .title {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      line-height: 1.1;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.12;
       font-weight: 800;
-      margin: 0 auto 20px;
-      letter-spacing: -0.03em;
-      color: #0f172a;
+      margin: 0 auto 16px;
+      max-width: 980px;
+      letter-spacing: -0.02em;
     }
 
-    .authors {
-      font-size: 1.2rem;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .affiliations {
+    .authors, .affiliations, .venue {
       color: var(--muted);
+      margin: 8px 0;
       font-size: 1rem;
-      margin-bottom: 24px;
     }
 
-    /* Buttons */
     .button-row {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
-      margin: 32px 0;
+      margin: 24px 0 10px;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 10px 24px;
-      border-radius: 99px;
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
       border: 1px solid var(--border);
       background: white;
-      color: #334155;
+      color: var(--text);
       font-weight: 600;
-      font-size: 0.95rem;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      transition: all 0.2s ease;
+      transition: 0.2s ease;
     }
 
     .btn:hover {
+      text-decoration: none;
       border-color: var(--accent);
       background: var(--accent-soft);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
     }
 
-    /* Sections */
     .section {
-      padding: 48px 0;
+      padding: 32px 0;
       border-top: 1px solid var(--border);
     }
 
     .section h2 {
-      font-size: 1.75rem;
-      margin: 0 0 24px;
+      font-size: 1.8rem;
+      margin: 0 0 16px;
       letter-spacing: -0.02em;
-      color: #0f172a;
     }
 
-    .abstract-text {
-      font-size: 1.1rem;
-      color: #334155;
-      text-align: justify;
-      hyphens: auto;
+    .section p {
+      margin: 0 0 14px;
+      font-size: 1.02rem;
     }
 
-    /* Media Handling */
-    .teaser-wrapper {
-        margin-bottom: 20px;
-    }
-
-    .teaser {
+    .teaser,
+    .single-figure img,
+    video {
       width: 100%;
-      height: auto;
-      border-radius: var(--radius);
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      border-radius: 16px;
       border: 1px solid var(--border);
+      display: block;
+      background: #fafafa;
     }
 
-    .figure-img {
+    /* Fixed Grid Image Handling */
+    .grid img {
       width: 100%;
-      height: auto;
-      max-height: 450px; /* Prevents images from becoming too tall */
-      object-fit: contain;
-      border-radius: 8px;
-      background: #fff;
+      height: 220px; /* Forces consistent height across the row */
+      object-fit: contain; /* Ensures plots aren't cropped/distorted */
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      background: #ffffff; /* Matches plot backgrounds */
+      margin-bottom: 12px;
     }
 
     .caption {
       color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 14px;
-      line-height: 1.5;
+      font-size: 0.95rem;
+      margin-top: auto; /* Pushes the caption to the bottom of the card */
+      padding-top: 10px;
     }
 
-    /* Grid Layout */
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: stretch; /* Ensures cards in the same row are equal height */
     }
 
     .card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
+      border-radius: 20px;
+      padding: 24px; /* Increased padding for breathing room */
       display: flex;
-      flex-direction: column;
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 20px -10px rgba(0,0,0,0.08);
+      flex-direction: column; /* Allows caption to be pushed to bottom */
     }
 
     .card h3 {
-      margin: 0 0 16px;
-      font-size: 1.2rem;
-      color: #1e293b;
+      margin: 0 0 14px;
+      font-size: 1.15rem;
     }
 
-    .card .caption {
-        margin-top: auto; /* Pushes caption to the bottom */
-        padding-top: 12px;
+    .small {
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
-    /* Code/Citation */
     pre {
       margin: 0;
-      padding: 24px;
+      padding: 16px;
       overflow-x: auto;
-      border-radius: var(--radius);
-      background: #1e293b;
-      color: #e2e8f0;
-      font-family: "Fira Code", monospace;
-      font-size: 0.85rem;
-      line-height: 1.6;
+      border-radius: 16px;
+      background: #0b1020;
+      color: #f8fafc;
+      font-size: 0.92rem;
+      line-height: 1.5;
     }
 
     footer {
-      padding: 60px 0;
+      padding: 36px 0 60px;
       color: var(--muted);
-      font-size: 0.9rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
+      font-size: 0.95rem;
     }
 
     @media (max-width: 800px) {
-      .grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 40px; }
-      .title { font-size: 2.2rem; }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .grid img {
+        height: auto; /* Allow natural height on mobile */
+      }
+      .hero {
+        padding-top: 36px;
+      }
     }
   </style>
 </head>
 <body>
-
   <header class="hero">
     <div class="container">
       <h1 class="title">SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision</h1>
       <div class="authors">
         Avigail Cohen Rimon, Amir Mann, Mirela Ben Chen, Or Litany
       </div>
-      <div class="affiliations">
-        Technion &mdash; Israel Institute of Technology
-      </div>
       <div class="button-row">
-        <a class="btn" href="./SpectralSplats_paper.pdf">📄 Paper</a>
-        <a class="btn" href="./SpectralSplats_supp.pdf">📽️ Supplementary</a>
-        <a class="btn" href="#" target="_blank">💻 Code (Soon)</a>
-        <a class="btn" href="#citation">Cite</a>
+        <a class="btn" href="./SpectralSplats_paper.png">Paper</a>
+        <a class="btn" href="./SpectralSplats_supp.png">Supplementary</a>
+        <a class="btn" href="#" target="_blank" rel="noopener">Code (coming soon)</a>
+        <a class="btn" href="#citation">Citation</a>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <section class="section" style="border-top:none; padding-top: 0;">
-      <div class="teaser-wrapper">
-        <img class="teaser" src="static/teaser.png" alt="SpectralSplats teaser figure" />
-        <p class="caption">
-          <strong>SpectralSplats</strong> enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments.
-        </p>
+    <section class="section" style="border-top:none; padding-top: 8px;">
+      <img class="teaser" src="static/teaser.png" alt="SpectralSplats teaser figure" />
+      <div class="caption">
+        SpectralSplats enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments.
       </div>
     </section>
 
     <section class="section">
       <h2>Abstract</h2>
-      <p class="abstract-text">
-        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent.
+      <p>
+        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce SpectralSplats, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that SpectralSplats acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
       </p>
     </section>
 
@@ -246,28 +217,50 @@
       <div class="grid">
         <div class="card">
           <h3>Why pixel loss fails</h3>
-          <img src="static/method_1d.png" class="figure-img" alt="1D optimization analysis" />
+          <img src="static/method_1d.png" alt="1D optimization analysis" />
           <div class="caption">
-            Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients.
+            Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients and avoids the locality trap.
           </div>
         </div>
 
         <div class="card">
           <h3>Frequency annealing</h3>
-          <img src="static/annealing_schedule.png" class="figure-img" alt="Frequency annealing schedule" />
+          <img src="static/annealing_schedule.png" alt="Frequency annealing schedule" />
           <div class="caption">
-            The active frequency bandwidth expands gradually, enabling stable global alignment first and precise refinement later.
+            The active frequency bandwidth expands gradually, enabling stable global alignment first and precise high-frequency refinement later.
           </div>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2>2D Optimization Demo</h2>
+      <h2>Key Idea</h2>
+      <p>
+        Pixels are local: when the rendered object is far from the target, gradients disappear.
+        Spectral moments are global: a spatial displacement induces a phase shift in frequency space,
+        which produces a non-vanishing optimization signal even under zero overlap.
+      </p>
+      <p>
+        Low frequencies provide a wide basin of attraction, while higher frequencies are introduced progressively to recover fine geometric detail without phase-wrapping traps.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>2D Demo</h2>
       <div class="single-figure">
-        <img src="static/demo_2d.png" class="teaser" alt="2D optimization demo" />
+        <img src="static/demo_2d.png" alt="2D optimization demo" />
         <div class="caption">
           A simple 2D demo showing that pixel-space supervision remains stranded near initialization, while spectral supervision produces coherent motion toward the target.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Quantitative Results</h2>
+      <div class="single-figure">
+        <img src="static/robustness_plot.png" alt="Robustness plots under initial spatial shift" />
+        <div class="caption">
+          Robustness under increasing initial spatial misalignment. Pixel-only supervision degrades rapidly as the initial shift grows, while SpectralSplats remains substantially more stable.
         </div>
       </div>
     </section>
@@ -276,29 +269,41 @@
       <h2>Qualitative Results</h2>
       <div class="grid">
         <div class="card">
-          <h3>SC4D Benchmark</h3>
-          <img src="static/sc4d_qualitative.png" class="figure-img" alt="SC4D qualitative results" />
+          <h3>SC4D</h3>
+          <img src="static/sc4d_qualitative.png" alt="SC4D qualitative results" />
           <div class="caption">
             On synthetic SC4D sequences, our method recovers pose and structure more reliably under large spatial shifts.
           </div>
         </div>
 
         <div class="card">
-          <h3>GART (Real World)</h3>
-          <img src="static/gart_qualitative.png" class="figure-img" alt="GART qualitative results" />
+          <h3>GART</h3>
+          <img src="static/gart_qualitative.png" alt="GART qualitative results" />
           <div class="caption">
-            On real-world GART data, SpectralSplats better recovers pose and preserves structure where pixel-only optimization fails.
+            On real-world GART data, SpectralSplats better recovers pose and preserves structure, while pixel-only optimization often becomes blurry or misaligned.
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="section">
+      <h2>Downloads</h2>
+      <div class="button-row" style="justify-content:flex-start;">
+        <a class="btn" href="./SpectralSplats_paper.pdf">Paper PDF</a>
+        <a class="btn" href="./SpectralSplats_supp.pdf">Supplementary PDF</a>
+        <a class="btn" href="#" target="_blank" rel="noopener">Code (coming soon)</a>
+      </div>
+      <p class="small">
+        You can place the PDFs in the repository root next to <code>index.html</code>.
+      </p>
     </section>
 
     <section class="section" id="citation">
       <h2>Citation</h2>
       <pre>@inproceedings{spectralsplats2026,
   title={SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision},
-  author={Cohen Rimon, Avigail and Mann, Amir and Ben Chen, Mirela and Litany, Or},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  author={},
+  booktitle={},
   year={2026}
 }</pre>
     </section>
@@ -306,9 +311,8 @@
 
   <footer>
     <div class="container">
-      &copy; 2026 SpectralSplats Authors. Created for academic dissemination.
+      Website template inspired by modern academic project pages.
     </div>
   </footer>
-
 </body>
 </html>
