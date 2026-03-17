@@ -14,7 +14,7 @@
       --card: #f8fafc;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
-      --maxw: 1000px; /* Slightly tighter for better readability */
+      --maxw: 1000px;
     }
 
     * { box-sizing: border-box; }
@@ -83,11 +83,16 @@
       letter-spacing: -0.02em;
     }
 
-    /* Figure & Caption Logic */
+    .section h3 {
+      font-size: 1.3rem;
+      margin: 0 0 16px;
+    }
+
+    /* Figure Block: Ensures caption matches image width */
     .figure-block {
-      display: inline-block; /* Makes the block wrap tight to the image */
-      width: 100%;
-      margin-bottom: 32px;
+      display: table; /* Shrink-wraps to the image width */
+      margin: 0 0 32px 0;
+      width: 100%; /* Default to full width for large images */
     }
 
     .figure-block img {
@@ -100,32 +105,16 @@
     }
 
     .caption {
+      display: table-caption;
+      caption-side: bottom;
       color: var(--muted);
       font-size: 0.95rem;
-      margin-top: 12px;
+      padding-top: 12px;
       line-height: 1.5;
       text-align: left;
-      /* Ensures caption doesn't exceed image width */
-      display: block;
     }
 
-    /* Side-by-Side Method Layout */
-    .method-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr; /* Why Pixel Loss gets more room */
-      gap: 32px;
-      align-items: start;
-      margin-top: 16px;
-    }
-
-    .method-card h3 {
-      margin: 0 0 12px;
-      font-size: 1.2rem;
-    }
-
-    /* Qualitative Rows */
     .qualitative-row { margin-bottom: 48px; }
-    .qualitative-row h3 { font-size: 1.4rem; margin-bottom: 16px; }
 
     pre {
       margin: 0;
@@ -147,7 +136,7 @@
     }
 
     @media (max-width: 850px) {
-      .method-grid { grid-template-columns: 1fr; }
+      .title { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -188,25 +177,11 @@
 
     <section class="section">
       <h2>Method Overview</h2>
-      <div class="method-grid">
-        <div class="method-card">
-          <h3>Why pixel loss fails</h3>
-          <div class="figure-block">
-            <img src="static/method_1d.png" alt="1D optimization analysis" />
-            <div class="caption">
-              Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients.
-            </div>
-          </div>
-        </div>
-
-        <div class="method-card">
-          <h3>Frequency annealing</h3>
-          <div class="figure-block">
-            <img src="static/annealing_schedule.png" alt="Frequency annealing schedule" />
-            <div class="caption">
-              The active frequency bandwidth expands gradually, enabling stable global alignment first.
-            </div>
-          </div>
+      <h3>Why pixel loss fails</h3>
+      <div class="figure-block">
+        <img src="static/method_1d.png" alt="1D optimization analysis" />
+        <div class="caption">
+          Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients and avoids the locality trap.
         </div>
       </div>
     </section>
