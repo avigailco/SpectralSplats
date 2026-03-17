@@ -168,7 +168,7 @@
     <div class="container">
       <h1 class="title">SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision</h1>
       <div class="authors">
-        Anonymous ECCV 2026 Submission
+        Avigail Cohen Rimon, Amir Mann, Mirela Ben Chen, Or Litany
       </div>
       <div class="affiliations">
         Replace this line with authors and affiliations after review
@@ -188,7 +188,7 @@
 
   <main class="container">
     <section class="section" style="border-top:none; padding-top: 8px;">
-      <img class="teaser" src="static/teaser.png" alt="SpectralSplats teaser figure" />
+      <img class="teaser" src="static/teaser.pdf" alt="SpectralSplats teaser figure" />
       <div class="caption">
         SpectralSplats enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments.
       </div>
@@ -209,7 +209,7 @@
       <div class="grid">
         <div class="card">
           <h3>Why pixel loss fails</h3>
-          <img src="static/method_1d.png" alt="1D optimization analysis" />
+          <img src="static/method_1d.pdf" alt="1D optimization analysis" />
           <div class="caption">
             Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients and avoids the locality trap.
           </div>
@@ -250,7 +250,7 @@
     <section class="section">
       <h2>Quantitative Results</h2>
       <div class="single-figure">
-        <img src="static/robustness_plot.png" alt="Robustness plots under initial spatial shift" />
+        <img src="static/robustness_plot.pdf" alt="Robustness plots under initial spatial shift" />
         <div class="caption">
           Robustness under increasing initial spatial misalignment. Pixel-only supervision degrades rapidly as the initial shift grows, while SpectralSplats remains substantially more stable.
         </div>
@@ -270,7 +270,7 @@
 
         <div class="card">
           <h3>GART</h3>
-          <img src="static/gart_qualitative.png" alt="GART qualitative results" />
+          <img src="static/gart_qualitative.pdf" alt="GART qualitative results" />
           <div class="caption">
             On real-world GART data, SpectralSplats better recovers pose and preserves structure, while pixel-only optimization often becomes blurry or misaligned.
           </div>
