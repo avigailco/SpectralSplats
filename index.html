@@ -49,10 +49,10 @@
       letter-spacing: -0.02em;
     }
 
-    .authors, .affiliations, .venue {
+    .authors {
       color: var(--muted);
       margin: 8px 0;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
     .button-row {
@@ -81,24 +81,38 @@
     }
 
     .section {
-      padding: 32px 0;
+      padding: 48px 0;
       border-top: 1px solid var(--border);
     }
 
     .section h2 {
       font-size: 1.8rem;
-      margin: 0 0 16px;
+      margin: 0 0 24px;
       letter-spacing: -0.02em;
     }
 
     .section p {
       margin: 0 0 14px;
-      font-size: 1.02rem;
+      font-size: 1.05rem;
     }
 
-    .teaser,
-    .single-figure img,
-    video {
+    /* Full-width block style for Method and 2D results */
+    .full-row-item {
+      margin-bottom: 40px;
+    }
+
+    .full-row-item img, .full-row-item video {
+      width: 100%;
+      height: auto;
+      max-height: 500px; /* Prevents 1D plots from being too tall */
+      object-fit: contain;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      display: block;
+      background: #fff;
+    }
+
+    .teaser {
       width: 100%;
       border-radius: 16px;
       border: 1px solid var(--border);
@@ -106,44 +120,32 @@
       background: #fafafa;
     }
 
-    /* Fixed Grid Image Handling */
-    .grid img {
-      width: 100%;
-      height: 220px; /* Forces consistent height across the row */
-      object-fit: contain; /* Ensures plots aren't cropped/distorted */
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      display: block;
-      background: #ffffff; /* Matches plot backgrounds */
-      margin-bottom: 12px;
-    }
-
     .caption {
       color: var(--muted);
       font-size: 0.95rem;
-      margin-top: auto; /* Pushes the caption to the bottom of the card */
-      padding-top: 10px;
+      margin-top: 14px;
+      max-width: 800px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-      align-items: stretch; /* Ensures cards in the same row are equal height */
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px; /* Increased padding for breathing room */
+    /* New layout for Qualitative rows */
+    .qualitative-row {
       display: flex;
-      flex-direction: column; /* Allows caption to be pushed to bottom */
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 60px;
     }
 
-    .card h3 {
-      margin: 0 0 14px;
-      font-size: 1.15rem;
+    .qualitative-row h3 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+
+    .qualitative-row img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
 
     .small {
@@ -169,15 +171,7 @@
     }
 
     @media (max-width: 800px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-      .grid img {
-        height: auto; /* Allow natural height on mobile */
-      }
-      .hero {
-        padding-top: 36px;
-      }
+      .hero { padding-top: 36px; }
     }
   </style>
 </head>
@@ -201,53 +195,43 @@
     <section class="section" style="border-top:none; padding-top: 8px;">
       <img class="teaser" src="static/teaser.png" alt="SpectralSplats teaser figure" />
       <div class="caption">
-        SpectralSplats enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments.
+        <strong>SpectralSplats</strong> enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments.
       </div>
     </section>
 
     <section class="section">
       <h2>Abstract</h2>
       <p>
-        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce SpectralSplats, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that SpectralSplats acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
+        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. 
+      </p>
+      <p>
+        We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent.
       </p>
     </section>
 
     <section class="section">
       <h2>Method Overview</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Why pixel loss fails</h3>
-          <img src="static/method_1d.png" alt="1D optimization analysis" />
-          <div class="caption">
-            Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients and avoids the locality trap.
-          </div>
+      
+      <div class="full-row-item">
+        <h3>Why pixel loss fails</h3>
+        <img src="static/method_1d.png" alt="1D optimization analysis" />
+        <div class="caption">
+          Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients and avoids the locality trap.
         </div>
+      </div>
 
-        <div class="card">
-          <h3>Frequency annealing</h3>
-          <img src="static/annealing_schedule.png" alt="Frequency annealing schedule" />
-          <div class="caption">
-            The active frequency bandwidth expands gradually, enabling stable global alignment first and precise high-frequency refinement later.
-          </div>
+      <div class="full-row-item">
+        <h3>Frequency annealing</h3>
+        <img src="static/annealing_schedule.png" alt="Frequency annealing schedule" />
+        <div class="caption">
+          The active frequency bandwidth expands gradually, enabling stable global alignment first and precise high-frequency refinement later.
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2>Key Idea</h2>
-      <p>
-        Pixels are local: when the rendered object is far from the target, gradients disappear.
-        Spectral moments are global: a spatial displacement induces a phase shift in frequency space,
-        which produces a non-vanishing optimization signal even under zero overlap.
-      </p>
-      <p>
-        Low frequencies provide a wide basin of attraction, while higher frequencies are introduced progressively to recover fine geometric detail without phase-wrapping traps.
-      </p>
-    </section>
-
-    <section class="section">
       <h2>2D Demo</h2>
-      <div class="single-figure">
+      <div class="full-row-item">
         <img src="static/demo_2d.png" alt="2D optimization demo" />
         <div class="caption">
           A simple 2D demo showing that pixel-space supervision remains stranded near initialization, while spectral supervision produces coherent motion toward the target.
@@ -257,7 +241,7 @@
 
     <section class="section">
       <h2>Quantitative Results</h2>
-      <div class="single-figure">
+      <div class="full-row-item">
         <img src="static/robustness_plot.png" alt="Robustness plots under initial spatial shift" />
         <div class="caption">
           Robustness under increasing initial spatial misalignment. Pixel-only supervision degrades rapidly as the initial shift grows, while SpectralSplats remains substantially more stable.
@@ -267,43 +251,30 @@
 
     <section class="section">
       <h2>Qualitative Results</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>SC4D</h3>
-          <img src="static/sc4d_qualitative.png" alt="SC4D qualitative results" />
-          <div class="caption">
-            On synthetic SC4D sequences, our method recovers pose and structure more reliably under large spatial shifts.
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>GART</h3>
-          <img src="static/gart_qualitative.png" alt="GART qualitative results" />
-          <div class="caption">
-            On real-world GART data, SpectralSplats better recovers pose and preserves structure, while pixel-only optimization often becomes blurry or misaligned.
-          </div>
-        </div>
+      
+      <div class="qualitative-row">
+        <h3>SC4D Benchmark</h3>
+        <img src="static/sc4d_qualitative.png" alt="SC4D qualitative results" />
+        <p class="caption">
+          On synthetic SC4D sequences, our method recovers pose and structure more reliably under large spatial shifts. SpectralSplats maintains the global structure of complex objects like SpiderMan and IronMan where standard baselines fail.
+        </p>
       </div>
-    </section>
 
-    <section class="section">
-      <h2>Downloads</h2>
-      <div class="button-row" style="justify-content:flex-start;">
-        <a class="btn" href="./SpectralSplats_paper.pdf">Paper PDF</a>
-        <a class="btn" href="./SpectralSplats_supp.pdf">Supplementary PDF</a>
-        <a class="btn" href="#" target="_blank" rel="noopener">Code (coming soon)</a>
+      <div class="qualitative-row">
+        <h3>GART (Real-world Data)</h3>
+        <img src="static/gart_qualitative.png" alt="GART qualitative results" />
+        <p class="caption">
+          On real-world GART data, SpectralSplats better recovers pose and preserves structure, while pixel-only optimization often becomes blurry or misaligned when the initial pose is far from the ground truth.
+        </p>
       </div>
-      <p class="small">
-        You can place the PDFs in the repository root next to <code>index.html</code>.
-      </p>
     </section>
 
     <section class="section" id="citation">
       <h2>Citation</h2>
       <pre>@inproceedings{spectralsplats2026,
   title={SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision},
-  author={},
-  booktitle={},
+  author={Cohen Rimon, Avigail and Mann, Amir and Ben Chen, Mirela and Litany, Or},
+  booktitle={CVPR},
   year={2026}
 }</pre>
     </section>
@@ -311,7 +282,7 @@
 
   <footer>
     <div class="container">
-      Website template inspired by modern academic project pages.
+      &copy; 2026 SpectralSplats Authors.
     </div>
   </footer>
 </body>
