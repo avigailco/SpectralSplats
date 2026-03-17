@@ -107,15 +107,6 @@
       background: #fafafa;
     }
 
-    .pdf-figure {
-      width: 100%;
-      height: 560px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      display: block;
-      background: #fafafa;
-    }
-
     .caption {
       color: var(--muted);
       font-size: 0.95rem;
@@ -166,13 +157,8 @@
       .grid {
         grid-template-columns: 1fr;
       }
-
       .hero {
         padding-top: 36px;
-      }
-
-      .pdf-figure {
-        height: 420px;
       }
     }
   </style>
@@ -185,8 +171,8 @@
         Avigail Cohen Rimon, Amir Mann, Mirela Ben Chen, Or Litany
       </div>
       <div class="button-row">
-        <a class="btn" href="./SpectralSplats_paper.pdf">Paper</a>
-        <a class="btn" href="./SpectralSplats_supp.pdf">Supplementary</a>
+        <a class="btn" href="./SpectralSplats_paper.png">Paper</a>
+        <a class="btn" href="./SpectralSplats_supp.png">Supplementary</a>
         <a class="btn" href="#" target="_blank" rel="noopener">Code (coming soon)</a>
         <a class="btn" href="#citation">Citation</a>
       </div>
@@ -195,12 +181,7 @@
 
   <main class="container">
     <section class="section" style="border-top:none; padding-top: 8px;">
-      <object class="pdf-figure" data="static/teaser.pdf" type="application/pdf">
-        <p>
-          Your browser could not display this PDF.
-          <a href="static/teaser.pdf" target="_blank" rel="noopener">Open teaser figure</a>.
-        </p>
-      </object>
+      <img class="teaser" src="static/teaser.png" alt="SpectralSplats teaser figure" />
       <div class="caption">
         SpectralSplats enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments.
       </div>
@@ -218,12 +199,7 @@
       <div class="grid">
         <div class="card">
           <h3>Why pixel loss fails</h3>
-          <object class="pdf-figure" data="static/method_1d.pdf" type="application/pdf">
-            <p>
-              Your browser could not display this PDF.
-              <a href="static/method_1d.pdf" target="_blank" rel="noopener">Open method figure</a>.
-            </p>
-          </object>
+          <img src="static/method_1d.png" alt="1D optimization analysis" />
           <div class="caption">
             Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients and avoids the locality trap.
           </div>
@@ -264,12 +240,7 @@
     <section class="section">
       <h2>Quantitative Results</h2>
       <div class="single-figure">
-        <object class="pdf-figure" data="static/robustness_plot.pdf" type="application/pdf">
-          <p>
-            Your browser could not display this PDF.
-            <a href="static/robustness_plot.pdf" target="_blank" rel="noopener">Open robustness plot</a>.
-          </p>
-        </object>
+        <img src="static/robustness_plot.png" alt="Robustness plots under initial spatial shift" />
         <div class="caption">
           Robustness under increasing initial spatial misalignment. Pixel-only supervision degrades rapidly as the initial shift grows, while SpectralSplats remains substantially more stable.
         </div>
@@ -289,12 +260,7 @@
 
         <div class="card">
           <h3>GART</h3>
-          <object class="pdf-figure" data="static/gart_qualitative.pdf" type="application/pdf">
-            <p>
-              Your browser could not display this PDF.
-              <a href="static/gart_qualitative.pdf" target="_blank" rel="noopener">Open GART qualitative figure</a>.
-            </p>
-          </object>
+          <img src="static/gart_qualitative.png" alt="GART qualitative results" />
           <div class="caption">
             On real-world GART data, SpectralSplats better recovers pose and preserves structure, while pixel-only optimization often becomes blurry or misaligned.
           </div>
@@ -310,7 +276,7 @@
         <a class="btn" href="#" target="_blank" rel="noopener">Code (coming soon)</a>
       </div>
       <p class="small">
-        Place the PDFs in the repository root next to <code>index.html</code>.
+        You can place the PDFs in the repository root next to <code>index.html</code>.
       </p>
     </section>
 
@@ -318,7 +284,7 @@
       <h2>Citation</h2>
       <pre>@inproceedings{spectralsplats2026,
   title={SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision},
-  author={Avigail Cohen Rimon and Amir Mann and Mirela Ben Chen and Or Litany},
+  author={},
   booktitle={},
   year={2026}
 }</pre>
