@@ -14,7 +14,7 @@
       --card: #f8fafc;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
-      --maxw: 1100px;
+      --maxw: 1200px;
     }
 
     * { box-sizing: border-box; }
@@ -120,15 +120,15 @@
 
     .ablation-grid {
       display: grid;
-      grid-template-columns: 120px repeat(4, 1fr);
-      gap: 12px;
+      grid-template-columns: 110px repeat(5, 1fr);
+      gap: 10px;
       align-items: center;
       text-align: center;
     }
 
     .grid-header {
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--muted);
       padding-bottom: 8px;
       text-transform: uppercase;
@@ -170,8 +170,7 @@
       border-top: 1px solid var(--border);
     }
 
-    @media (max-width: 850px) {
-      .title { font-size: 2.2rem; }
+    @media (max-width: 950px) {
       .ablation-grid { grid-template-columns: 1fr; }
       .method-label { text-align: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
       .grid-header { display: none; }
@@ -207,16 +206,9 @@
     </section>
 
     <section class="section">
-      <h2>Abstract</h2>
-      <p>
-        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish. We introduce SpectralSplats, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. 
-      </p>
-    </section>
-
-    <section class="section">
       <h2>Robustness to Initialization (Shift Ablation)</h2>
       <p style="margin-bottom: 32px; color: var(--muted);">
-        Comparison of <strong>Pixel</strong> vs. <strong>Spectral</strong> supervision across spatial shifts (0.0 to 1.0). Spectral supervision ensures convergence even with zero initial overlap.
+        Comparison of <strong>Pixel</strong> vs. <strong>Spectral</strong> supervision across spatial shifts (0.0 to 0.8). Spectral supervision ensures convergence even with zero initial overlap.
       </p>
 
       <div id="ablation-container">
@@ -224,76 +216,96 @@
         <div class="ablation-dog-section">
           <h3>Shiba</h3>
           <div class="ablation-grid">
-            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
+            <div class="grid-header">Method</div>
+            <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.2</div>
+            <div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.6</div>
+            <div class="grid-header">Shift 0.8</div>
             
             <div class="method-label">Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/1.0/pixel_step_final.mp4" type="video/mp4"></video></div>
 
             <div class="method-label">Spectral</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/1.0/spectral_step_final.mp4" type="video/mp4"></video></div>
           </div>
         </div>
 
         <div class="ablation-dog-section">
           <h3>French</h3>
           <div class="ablation-grid">
-            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
+            <div class="grid-header">Method</div>
+            <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.2</div>
+            <div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.6</div>
+            <div class="grid-header">Shift 0.8</div>
             
             <div class="method-label">Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/1.0/pixel_step_final.mp4" type="video/mp4"></video></div>
 
             <div class="method-label">Spectral</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/spectral_step_final.mp4" type="type/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/1.0/spectral_step_final.mp4" type="video/mp4"></video></div>
           </div>
         </div>
 
         <div class="ablation-dog-section">
           <h3>English</h3>
           <div class="ablation-grid">
-            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
+            <div class="grid-header">Method</div>
+            <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.2</div>
+            <div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.6</div>
+            <div class="grid-header">Shift 0.8</div>
             
             <div class="method-label">Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/1.0/pixel_step_final.mp4" type="video/mp4"></video></div>
 
             <div class="method-label">Spectral</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/1.0/spectral_step_final.mp4" type="video/mp4"></video></div>
           </div>
         </div>
 
         <div class="ablation-dog-section">
           <h3>Hound</h3>
           <div class="ablation-grid">
-            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
+            <div class="grid-header">Method</div>
+            <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.2</div>
+            <div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.6</div>
+            <div class="grid-header">Shift 0.8</div>
             
             <div class="method-label">Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/1.0/pixel_step_final.mp4" type="video/mp4"></video></div>
 
             <div class="method-label">Spectral</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/1.0/spectral_step_final.mp4" type="video/mp4"></video></div>
           </div>
         </div>
 
