@@ -1,4 +1,253 @@
-<div class="qualitative-row">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision</title>
+  <meta name="description" content="Project page for SpectralSplats." />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #666666;
+      --border: #e5e7eb;
+      --card: #f8fafc;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --maxw: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: min(var(--maxw), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero { padding: 56px 0 24px; text-align: center; }
+    .title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.12;
+      font-weight: 800;
+      margin: 0 auto 16px;
+      max-width: 980px;
+      letter-spacing: -0.02em;
+    }
+
+    .authors { color: var(--muted); margin: 8px 0; font-size: 1.1rem; }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 24px 0 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .section {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .section h3 {
+      font-size: 1.3rem;
+      margin: 0 0 16px;
+    }
+
+    .figure-block {
+      display: table;
+      margin: 0 0 32px 0;
+      width: 100%;
+    }
+
+    .figure-block img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      background: #fff;
+    }
+
+    .caption {
+      display: table-caption;
+      caption-side: bottom;
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding-top: 12px;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    /* --- Ablation Grid Styles --- */
+    .ablation-dog-section {
+      margin-bottom: 64px;
+    }
+
+    .ablation-grid {
+      display: grid;
+      grid-template-columns: 120px repeat(4, 1fr);
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .grid-header {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .method-label {
+      font-weight: 700;
+      text-align: left;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .grid-item img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f1f5f9;
+    }
+
+    pre {
+      margin: 0;
+      padding: 20px;
+      overflow-x: auto;
+      border-radius: 12px;
+      background: #0b1020;
+      color: #f8fafc;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    footer {
+      padding: 40px 0 60px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 850px) {
+      .title { font-size: 2.2rem; }
+      .ablation-grid { grid-template-columns: 1fr; }
+      .method-label { text-align: center; padding-top: 20px; border-bottom: 1px solid var(--border); }
+      .grid-header { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <h1 class="title">SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision</h1>
+      <div class="authors">
+        Avigail Cohen Rimon, Amir Mann, Mirela Ben Chen, Or Litany
+      </div>
+      <div class="button-row">
+        <a class="btn" href="./SpectralSplats_paper.png">Paper</a>
+        <a class="btn" href="./SpectralSplats_supp.png">Supplementary</a>
+        <a class="btn" href="#" target="_blank">Code (coming soon)</a>
+        <a class="btn" href="#citation">Citation</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="section" style="border-top:none; padding-top: 8px;">
+      <div class="figure-block">
+        <img src="static/teaser_gif.gif" alt="SpectralSplats teaser animation" />
+        <div class="caption">
+          <strong>SpectralSplats (right)</strong> enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (left) fails to converge.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Abstract</h2>
+      <p>
+        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce SpectralSplats, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that SpectralSplats acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Method Overview</h2>
+      <h3>Why pixel loss fails</h3>
+      <div class="figure-block">
+        <img src="static/method_1d.png" alt="1D optimization analysis" />
+        <div class="caption">
+          Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients and avoids the locality trap.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2D Demo</h2>
+      <div class="figure-block">
+        <img src="static/demo_2d.png" alt="2D optimization demo" />
+        <div class="caption">
+          A simple 2D demo showing that pixel-space supervision remains stranded near initialization, while spectral supervision produces coherent motion toward the target.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Qualitative Results</h2>
+      
+      <div class="qualitative-row">
+        <h3>SC4D</h3>
+        <div class="figure-block">
+          <img src="static/sc4d_qualitative.png" alt="SC4D qualitative results" />
+          <div class="caption">
+            Qualitative comparison on synthetic SC4d data under large spatial shifts. While pixel-only optimization fails to recover the correct pose—often causing the object to drift out of frame—our method achieves superior alignment and preserves structural coherence across both training and novel views.
+          </div>
+        </div>
+      </div>
+
+      <div class="qualitative-row">
         <h3>GART Comparison</h3>
         <div class="figure-block">
           <img src="static/gart_qualitative.png" alt="GART qualitative results" />
@@ -7,57 +256,24 @@
           </div>
         </div>
       </div>
+    </section>
 
-      <section class="section">
-        <h2>Robustness to Initialization (Shift Ablation)</h2>
-        <p style="margin-bottom: 32px; color: var(--muted);">
-          We evaluate the convergence of <strong>Pixel</strong> vs. <strong>Spectral</strong> supervision across increasing spatial shifts ($0.0$ to $1.0$). Spectral supervision maintains a global basin of attraction, enabling convergence even when the initialization has zero spatial overlap with the target.
-        </p>
+    <section class="section">
+      <h2>Robustness to Initialization (Shift Ablation)</h2>
+      <p style="margin-bottom: 32px; color: var(--muted);">
+        We evaluate the convergence of <strong>Pixel</strong> vs. <strong>Spectral</strong> supervision across increasing spatial shifts ($0.0$ to $1.0$). Spectral supervision maintains a global basin of attraction, enabling convergence even when the initialization has zero spatial overlap with the target.
+      </p>
 
-        <script>
-          // Data for generation
-          const dogs = ["shiba", "hound", "corgi", "pit_bull", "english", "alaskan", "french"];
-          const shifts = ["0.0", "0.4", "0.8", "1.0"];
-          const types = ["pixel", "spectral"];
-
-          // For the sake of a clean single-file answer, I've manually expanded the first few below.
-          // In a real production environment, you could use this array to generate them.
-        </script>
-
-        <div class="ablation-dog-section">
-          <h3>Alaskan</h3>
-          <div class="ablation-grid">
-            <div class="grid-header">Method</div>
-            <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div>
-            <div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
-
-            <div class="method-label">Pixel</div>
-            <div class="grid-item"><img src="static/page_gifs/alaskan/0.0/pixel_step_final.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/alaskan/0.4/pixel_step_final.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/alaskan/0.8/pixel_step_final.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/alaskan/1.0/pixel_step_final.gif"></div>
-
-            <div class="method-label">Spectral</div>
-            <div class="grid-item"><img src="static/page_gifs/alaskan/0.0/spectral_step_final.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/alaskan/0.4/spectral_step_final.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/alaskan/0.8/spectral_step_final.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/alaskan/1.0/spectral_step_final.gif"></div>
-          </div>
-        </div>
-
+      <div id="ablation-container">
         <div class="ablation-dog-section">
           <h3>Shiba</h3>
           <div class="ablation-grid">
-            <div class="grid-header">Method</div>
-            <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div>
-            <div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
-
+            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
             <div class="method-label">Pixel</div>
             <div class="grid-item"><img src="static/page_gifs/shiba/0.0/pixel_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/shiba/0.4/pixel_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/shiba/0.8/pixel_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/shiba/1.0/pixel_step_final.gif"></div>
-
             <div class="method-label">Spectral</div>
             <div class="grid-item"><img src="static/page_gifs/shiba/0.0/spectral_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/shiba/0.4/spectral_step_final.gif"></div>
@@ -67,18 +283,31 @@
         </div>
 
         <div class="ablation-dog-section">
+          <h3>Hound</h3>
+          <div class="ablation-grid">
+            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><img src="static/page_gifs/hound/0.0/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/hound/0.4/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/hound/0.8/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/hound/1.0/pixel_step_final.gif"></div>
+            <div class="method-label">Spectral</div>
+            <div class="grid-item"><img src="static/page_gifs/hound/0.0/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/hound/0.4/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/hound/0.8/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/hound/1.0/spectral_step_final.gif"></div>
+          </div>
+        </div>
+
+        <div class="ablation-dog-section">
           <h3>Corgi</h3>
           <div class="ablation-grid">
-            <div class="grid-header">Method</div>
-            <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div>
-            <div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
-
+            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
             <div class="method-label">Pixel</div>
             <div class="grid-item"><img src="static/page_gifs/corgi/0.0/pixel_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/corgi/0.4/pixel_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/corgi/0.8/pixel_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/corgi/1.0/pixel_step_final.gif"></div>
-
             <div class="method-label">Spectral</div>
             <div class="grid-item"><img src="static/page_gifs/corgi/0.0/spectral_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/corgi/0.4/spectral_step_final.gif"></div>
@@ -90,16 +319,12 @@
         <div class="ablation-dog-section">
           <h3>Pit Bull</h3>
           <div class="ablation-grid">
-            <div class="grid-header">Method</div>
-            <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div>
-            <div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
-
+            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
             <div class="method-label">Pixel</div>
             <div class="grid-item"><img src="static/page_gifs/pit_bull/0.0/pixel_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/pit_bull/0.4/pixel_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/pit_bull/0.8/pixel_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/pit_bull/1.0/pixel_step_final.gif"></div>
-
             <div class="method-label">Spectral</div>
             <div class="grid-item"><img src="static/page_gifs/pit_bull/0.0/spectral_step_final.gif"></div>
             <div class="grid-item"><img src="static/page_gifs/pit_bull/0.4/spectral_step_final.gif"></div>
@@ -108,5 +333,74 @@
           </div>
         </div>
 
-      </section>
+        <div class="ablation-dog-section">
+          <h3>English</h3>
+          <div class="ablation-grid">
+            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><img src="static/page_gifs/english/0.0/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/english/0.4/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/english/0.8/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/english/1.0/pixel_step_final.gif"></div>
+            <div class="method-label">Spectral</div>
+            <div class="grid-item"><img src="static/page_gifs/english/0.0/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/english/0.4/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/english/0.8/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/english/1.0/spectral_step_final.gif"></div>
+          </div>
+        </div>
+
+        <div class="ablation-dog-section">
+          <h3>Alaskan</h3>
+          <div class="ablation-grid">
+            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><img src="static/page_gifs/alaskan/0.0/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/alaskan/0.4/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/alaskan/0.8/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/alaskan/1.0/pixel_step_final.gif"></div>
+            <div class="method-label">Spectral</div>
+            <div class="grid-item"><img src="static/page_gifs/alaskan/0.0/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/alaskan/0.4/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/alaskan/0.8/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/alaskan/1.0/spectral_step_final.gif"></div>
+          </div>
+        </div>
+
+        <div class="ablation-dog-section">
+          <h3>French</h3>
+          <div class="ablation-grid">
+            <div class="grid-header">Method</div><div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.8</div><div class="grid-header">Shift 1.0</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><img src="static/page_gifs/french/0.0/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/french/0.4/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/french/0.8/pixel_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/french/1.0/pixel_step_final.gif"></div>
+            <div class="method-label">Spectral</div>
+            <div class="grid-item"><img src="static/page_gifs/french/0.0/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/french/0.4/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/french/0.8/spectral_step_final.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/french/1.0/spectral_step_final.gif"></div>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <section class="section" id="citation">
+      <h2>Citation</h2>
+      <pre>@inproceedings{spectralsplats2026,
+  title={SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision},
+  author={Cohen Rimon, Avigail and Mann, Amir and Ben Chen, Mirela and Litany, Or},
+  year={2026}
+}</pre>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; 2026 SpectralSplats.
+    </div>
+  </footer>
+
+</body>
+</html>
