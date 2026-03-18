@@ -14,7 +14,7 @@
       --card: #f8fafc;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
-      --maxw: 1200px;
+      --maxw: 1400px; /* Increased to allow squares to grow */
     }
 
     * { box-sizing: border-box; }
@@ -24,156 +24,103 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
+      font-size: 1.2rem; /* Kept large as requested previously */
       line-height: 1.6;
     }
-
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
     .container {
       width: min(var(--maxw), calc(100% - 32px));
       margin: 0 auto;
     }
 
-    .hero { padding: 56px 0 24px; text-align: center; }
+    .hero { padding: 60px 0 30px; text-align: center; }
     .title {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.12;
-      font-weight: 800;
-      margin: 0 auto 16px;
-      max-width: 980px;
-      letter-spacing: -0.02em;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.1;
+      font-weight: 900;
+      margin-bottom: 20px;
+      letter-spacing: -0.04em;
     }
 
-    .authors { color: var(--muted); margin: 8px 0; font-size: 1.1rem; }
+    .authors { color: var(--muted); font-size: 1.4rem; margin-bottom: 30px; }
 
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin: 24px 0 10px;
-    }
-
+    .button-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 40px; }
     .btn {
-      display: inline-block;
-      padding: 10px 20px;
+      padding: 12px 28px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: white;
-      color: var(--text);
-      font-weight: 600;
-      transition: 0.2s ease;
-    }
-
-    .btn:hover {
+      font-weight: 700;
       text-decoration: none;
-      border-color: var(--accent);
-      background: var(--accent-soft);
+      color: var(--text);
+      transition: 0.2s;
+    }
+    .btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+    .section { padding: 60px 0; border-top: 1px solid var(--border); }
+    .section h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 30px; letter-spacing: -0.02em; }
+    
+    .figure-block { width: 100%; margin-bottom: 40px; }
+    .figure-block img { width: 100%; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .caption { font-size: 1.1rem; color: var(--muted); margin-top: 15px; }
+
+    /* --- MASTER 2x2 GRID --- */
+    .ablation-master-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
     }
 
-    .section {
-      padding: 48px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .section h2 {
-      font-size: 1.8rem;
-      margin: 0 0 24px;
-      letter-spacing: -0.02em;
-    }
-
-    .section h3 {
-      font-size: 1.3rem;
-      margin: 0 0 16px;
-    }
-
-    .figure-block {
-      display: table;
-      margin: 0 0 32px 0;
-      width: 100%;
-    }
-
-    .figure-block img, .figure-block video {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
+    .dog-card {
       border: 1px solid var(--border);
-      display: block;
-      background: #fff;
+      border-radius: 20px;
+      padding: 20px; /* Reduced padding to give more room to content */
+      background: #ffffff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     }
 
-    .caption {
-      display: table-caption;
-      caption-side: bottom;
-      color: var(--muted);
-      font-size: 0.95rem;
-      padding-top: 12px;
-      line-height: 1.5;
-      text-align: left;
-    }
+    .dog-card h3 { font-size: 1.8rem; margin: 0 0 20px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 10px; }
 
-    /* --- Ablation Grid Styles --- */
-    .ablation-dog-section {
-      margin-bottom: 64px;
-    }
-
+    /* --- INTERNAL VIDEO GRID --- */
     .ablation-grid {
       display: grid;
-      grid-template-columns: 130px repeat(5, 1fr); /* Slightly widened for MLP labels */
-      gap: 10px;
+      /* Reduced first column (label) to 90px to push more width to videos */
+      grid-template-columns: 90px repeat(5, 1fr); 
+      gap: 8px; /* Tightened gap */
       align-items: center;
       text-align: center;
     }
 
     .grid-header {
-      font-weight: 700;
-      font-size: 0.8rem;
+      font-weight: 800;
+      font-size: 0.85rem;
       color: var(--muted);
-      padding-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      padding-bottom: 10px;
     }
 
     .method-label {
       font-weight: 700;
       text-align: left;
-      font-size: 0.9rem;
+      font-size: 0.85rem; /* Smaller font for long labels to prevent column bloat */
       color: var(--text);
+      line-height: 1.2;
     }
 
     .grid-item video {
-      width: 100%;
+      width: 100%; /* Now takes full available share of the wider container */
       aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 8px;
       border: 1px solid var(--border);
-      background: #f1f5f9;
+      background: #f8fafc;
+      display: block;
     }
 
-    pre {
-      margin: 0;
-      padding: 20px;
-      overflow-x: auto;
-      border-radius: 12px;
-      background: #0b1020;
-      color: #f8fafc;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
+    pre { padding: 25px; background: #0b1020; color: #f8fafc; border-radius: 16px; overflow-x: auto; font-size: 1.1rem; }
+    footer { padding: 60px 0; text-align: center; color: var(--muted); border-top: 1px solid var(--border); }
 
-    footer {
-      padding: 40px 0 60px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-
-    @media (max-width: 950px) {
-      .ablation-grid { grid-template-columns: 1fr; }
-      .method-label { text-align: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
-      .grid-header { display: none; }
+    @media (max-width: 1100px) {
+      .ablation-master-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -182,13 +129,11 @@
   <header class="hero">
     <div class="container">
       <h1 class="title">SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision</h1>
-      <div class="authors">
-        Avigail Cohen Rimon, Amir Mann, Mirela Ben Chen, Or Litany
-      </div>
+      <div class="authors">Avigail Cohen Rimon, Amir Mann, Mirela Ben Chen, Or Litany</div>
       <div class="button-row">
         <a class="btn" href="./SpectralSplats_paper.png">Paper</a>
         <a class="btn" href="./SpectralSplats_supp.png">Supplementary</a>
-        <a class="btn" href="#" target="_blank">Code (coming soon)</a>
+        <a class="btn" href="#">Code (coming soon)</a>
         <a class="btn" href="#citation">Citation</a>
       </div>
     </div>
@@ -196,29 +141,30 @@
 
   <main class="container">
     
-    <section class="section" style="border-top:none; padding-top: 8px;">
+    <section class="section" style="border-top:none; padding-top: 0;">
       <div class="figure-block">
-        <img src="static/teaser_gif.gif" alt="SpectralSplats teaser animation" />
+        <img src="static/teaser_gif.gif" alt="SpectralSplats teaser" />
         <div class="caption">
-          <strong>SpectralSplats (right)</strong> enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments.
+          <strong>SpectralSplats (right)</strong> enables robust tracking even from zero-overlap initializations.
         </div>
       </div>
     </section>
 
     <section class="section">
       <h2>Qualitative Results</h2>
-      <p style="margin-bottom: 32px; color: var(--muted);">
+      <p style="margin-bottom: 40px; color: var(--muted);">
         Comparison of <strong>MLP+Pixel</strong> vs. <strong>MLP+Spectral</strong> supervision across spatial shifts (0.0 to 0.8).
       </p>
 
-      <div id="ablation-container">
+      <div class="ablation-master-grid">
         
-        <div class="ablation-dog-section">
+        <div class="dog-card">
           <h3>Shiba</h3>
           <div class="ablation-grid">
-            <div></div> <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.2</div>
-            <div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.6</div>
-            <div class="grid-header">Shift 0.8</div>
+            <div></div> 
+            <div class="grid-header">0.0</div><div class="grid-header">0.2</div>
+            <div class="grid-header">0.4</div><div class="grid-header">0.6</div>
+            <div class="grid-header">0.8</div>
             
             <div class="method-label">MLP+Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
@@ -236,12 +182,13 @@
           </div>
         </div>
 
-        <div class="ablation-dog-section">
+        <div class="dog-card">
           <h3>French</h3>
           <div class="ablation-grid">
-            <div></div> <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.2</div>
-            <div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.6</div>
-            <div class="grid-header">Shift 0.8</div>
+            <div></div> 
+            <div class="grid-header">0.0</div><div class="grid-header">0.2</div>
+            <div class="grid-header">0.4</div><div class="grid-header">0.6</div>
+            <div class="grid-header">0.8</div>
             
             <div class="method-label">MLP+Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
@@ -259,13 +206,13 @@
           </div>
         </div>
 
-        <div class="ablation-dog-section">
+        <div class="dog-card">
           <h3>English</h3>
           <div class="ablation-grid">
-            <div></div> <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.2</div>
-            <div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.6</div>
-            <div class="grid-header">Shift 0.8</div>
-            
+            <div></div>
+            <div class="grid-header">0.0</div><div class="grid-header">0.2</div>
+            <div class="grid-header">0.4</div><div class="grid-header">0.6</div>
+            <div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
@@ -282,13 +229,13 @@
           </div>
         </div>
 
-        <div class="ablation-dog-section">
+        <div class="dog-card">
           <h3>Hound</h3>
           <div class="ablation-grid">
-            <div></div> <div class="grid-header">Shift 0.0</div><div class="grid-header">Shift 0.2</div>
-            <div class="grid-header">Shift 0.4</div><div class="grid-header">Shift 0.6</div>
-            <div class="grid-header">Shift 0.8</div>
-            
+            <div></div>
+            <div class="grid-header">0.0</div><div class="grid-header">0.2</div>
+            <div class="grid-header">0.4</div><div class="grid-header">0.6</div>
+            <div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
