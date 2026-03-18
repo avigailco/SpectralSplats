@@ -214,7 +214,7 @@
     <section class="section">
       <h2>Abstract</h2>
       <p>
-        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's footprint, gradients strictly vanish. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolve this by shifting optimization to the frequency domain.
+        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's footprint, gradients strictly vanish. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this by shifting optimization to the frequency domain.
       </p>
     </section>
 
@@ -224,7 +224,7 @@
       <div class="figure-block">
         <img src="static/method_1d.png" alt="1D optimization analysis" />
         <div class="caption">
-          Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients.
+          Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients and avoids the locality trap.
         </div>
       </div>
     </section>
@@ -234,7 +234,7 @@
       <div class="figure-block">
         <img src="static/demo_2d.png" alt="2D optimization demo" />
         <div class="caption">
-          Pixel-space supervision remains stranded, while spectral supervision produces coherent motion toward the target.
+          Pixel-space supervision remains stranded near initialization, while spectral supervision produces coherent motion toward the target even under zero spatial overlap.
         </div>
       </div>
     </section>
