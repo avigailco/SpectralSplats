@@ -14,7 +14,7 @@
       --card: #f8fafc;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
-      --maxw: 1400px; /* Increased to allow squares to grow */
+      --maxw: 1400px; /* Increased to allow bigger videos */
     }
 
     * { box-sizing: border-box; }
@@ -24,100 +24,161 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-size: 1.2rem; /* Kept large as requested previously */
       line-height: 1.6;
+      font-size: 1.2rem; /* Keep font readable/large */
     }
 
     .container {
-      width: min(var(--maxw), calc(100% - 32px));
+      width: min(var(--maxw), calc(100% - 48px));
       margin: 0 auto;
     }
 
-    .hero { padding: 60px 0 30px; text-align: center; }
+    .hero { padding: 64px 0 32px; text-align: center; }
     .title {
       font-size: clamp(2.2rem, 5vw, 4rem);
       line-height: 1.1;
-      font-weight: 900;
-      margin-bottom: 20px;
-      letter-spacing: -0.04em;
+      font-weight: 800;
+      margin: 0 auto 20px;
+      letter-spacing: -0.03em;
     }
 
-    .authors { color: var(--muted); font-size: 1.4rem; margin-bottom: 30px; }
+    .authors { color: var(--muted); margin: 12px 0; font-size: 1.3rem; }
 
-    .button-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 40px; }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 32px 0;
+    }
+
     .btn {
-      padding: 12px 28px;
+      display: inline-block;
+      padding: 12px 24px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: white;
+      color: var(--text);
       font-weight: 700;
       text-decoration: none;
-      color: var(--text);
-      transition: 0.2s;
+      transition: 0.2s ease;
     }
-    .btn:hover { border-color: var(--accent); background: var(--accent-soft); }
 
-    .section { padding: 60px 0; border-top: 1px solid var(--border); }
-    .section h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 30px; letter-spacing: -0.02em; }
-    
-    .figure-block { width: 100%; margin-bottom: 40px; }
-    .figure-block img { width: 100%; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-    .caption { font-size: 1.1rem; color: var(--muted); margin-top: 15px; }
+    .btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
 
-    /* --- MASTER 2x2 GRID --- */
+    .section {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      margin: 0 0 32px;
+      font-weight: 800;
+    }
+
+    .section h3 {
+      font-size: 1.8rem;
+      margin: 0 0 20px;
+    }
+
+    .figure-block {
+      display: table;
+      margin: 0 0 40px 0;
+      width: 100%;
+    }
+
+    .figure-block img, .figure-block video {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      background: #fff;
+    }
+
+    .caption {
+      display: table-caption;
+      caption-side: bottom;
+      color: var(--muted);
+      font-size: 1.1rem;
+      padding-top: 16px;
+      text-align: left;
+    }
+
+    /* --- Qualitative Results 2x2 Grid --- */
     .ablation-master-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: 1fr 1fr; /* Two dogs per row */
+      gap: 32px;
     }
 
     .dog-card {
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 20px; /* Reduced padding to give more room to content */
+      padding: 24px;
       background: #ffffff;
       box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     }
 
-    .dog-card h3 { font-size: 1.8rem; margin: 0 0 20px; border-bottom: 2px solid var(--accent-soft); padding-bottom: 10px; }
+    .dog-card h3 {
+      margin: 0 0 16px;
+      border-bottom: 2px solid var(--accent-soft);
+      padding-bottom: 8px;
+    }
 
-    /* --- INTERNAL VIDEO GRID --- */
     .ablation-grid {
       display: grid;
-      /* Reduced first column (label) to 90px to push more width to videos */
-      grid-template-columns: 90px repeat(5, 1fr); 
-      gap: 8px; /* Tightened gap */
+      /* Reduced first column width to give more space to videos */
+      grid-template-columns: 100px repeat(5, 1fr); 
+      gap: 8px;
       align-items: center;
       text-align: center;
     }
 
     .grid-header {
-      font-weight: 800;
+      font-weight: 700;
       font-size: 0.85rem;
       color: var(--muted);
-      padding-bottom: 10px;
+      padding-bottom: 8px;
     }
 
     .method-label {
       font-weight: 700;
       text-align: left;
-      font-size: 0.85rem; /* Smaller font for long labels to prevent column bloat */
+      font-size: 0.85rem;
       color: var(--text);
       line-height: 1.2;
     }
 
     .grid-item video {
-      width: 100%; /* Now takes full available share of the wider container */
+      width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 6px;
       border: 1px solid var(--border);
       background: #f8fafc;
-      display: block;
     }
 
-    pre { padding: 25px; background: #0b1020; color: #f8fafc; border-radius: 16px; overflow-x: auto; font-size: 1.1rem; }
-    footer { padding: 60px 0; text-align: center; color: var(--muted); border-top: 1px solid var(--border); }
+    pre {
+      margin: 0;
+      padding: 24px;
+      overflow-x: auto;
+      border-radius: 12px;
+      background: #0b1020;
+      color: #f8fafc;
+      font-size: 1rem;
+    }
+
+    footer {
+      padding: 64px 0;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
 
     @media (max-width: 1100px) {
       .ablation-master-grid { grid-template-columns: 1fr; }
@@ -133,7 +194,7 @@
       <div class="button-row">
         <a class="btn" href="./SpectralSplats_paper.png">Paper</a>
         <a class="btn" href="./SpectralSplats_supp.png">Supplementary</a>
-        <a class="btn" href="#">Code (coming soon)</a>
+        <a class="btn" href="#" target="_blank">Code (coming soon)</a>
         <a class="btn" href="#citation">Citation</a>
       </div>
     </div>
@@ -143,16 +204,44 @@
     
     <section class="section" style="border-top:none; padding-top: 0;">
       <div class="figure-block">
-        <img src="static/teaser_gif.gif" alt="SpectralSplats teaser" />
+        <img src="static/teaser_gif.gif" alt="SpectralSplats teaser animation" />
         <div class="caption">
-          <strong>SpectralSplats (right)</strong> enables robust tracking even from zero-overlap initializations.
+          <strong>SpectralSplats (right)</strong> enables robust tracking even from zero-overlap initializations, whereas pixel-only optimization (left) fails to converge.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Abstract</h2>
+      <p>
+        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's footprint, gradients strictly vanish. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolve this by shifting optimization to the frequency domain.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Method Overview</h2>
+      <h3>Why pixel loss fails</h3>
+      <div class="figure-block">
+        <img src="static/method_1d.png" alt="1D optimization analysis" />
+        <div class="caption">
+          Standard photometric loss vanishes under large spatial displacement, while spectral supervision provides informative gradients.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2D Demo</h2>
+      <div class="figure-block">
+        <img src="static/demo_2d.png" alt="2D optimization demo" />
+        <div class="caption">
+          Pixel-space supervision remains stranded, while spectral supervision produces coherent motion toward the target.
         </div>
       </div>
     </section>
 
     <section class="section">
       <h2>Qualitative Results</h2>
-      <p style="margin-bottom: 40px; color: var(--muted);">
+      <p style="margin-bottom: 32px; color: var(--muted);">
         Comparison of <strong>MLP+Pixel</strong> vs. <strong>MLP+Spectral</strong> supervision across spatial shifts (0.0 to 0.8).
       </p>
 
@@ -161,18 +250,13 @@
         <div class="dog-card">
           <h3>Shiba</h3>
           <div class="ablation-grid">
-            <div></div> 
-            <div class="grid-header">0.0</div><div class="grid-header">0.2</div>
-            <div class="grid-header">0.4</div><div class="grid-header">0.6</div>
-            <div class="grid-header">0.8</div>
-            
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-
             <div class="method-label">MLP+Spectral</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
@@ -185,18 +269,13 @@
         <div class="dog-card">
           <h3>French</h3>
           <div class="ablation-grid">
-            <div></div> 
-            <div class="grid-header">0.0</div><div class="grid-header">0.2</div>
-            <div class="grid-header">0.4</div><div class="grid-header">0.6</div>
-            <div class="grid-header">0.8</div>
-            
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-
             <div class="method-label">MLP+Spectral</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
@@ -209,17 +288,13 @@
         <div class="dog-card">
           <h3>English</h3>
           <div class="ablation-grid">
-            <div></div>
-            <div class="grid-header">0.0</div><div class="grid-header">0.2</div>
-            <div class="grid-header">0.4</div><div class="grid-header">0.6</div>
-            <div class="grid-header">0.8</div>
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-
             <div class="method-label">MLP+Spectral</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
@@ -232,17 +307,13 @@
         <div class="dog-card">
           <h3>Hound</h3>
           <div class="ablation-grid">
-            <div></div>
-            <div class="grid-header">0.0</div><div class="grid-header">0.2</div>
-            <div class="grid-header">0.4</div><div class="grid-header">0.6</div>
-            <div class="grid-header">0.8</div>
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-
             <div class="method-label">MLP+Spectral</div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
@@ -266,9 +337,7 @@
   </main>
 
   <footer>
-    <div class="container">
-      &copy; 2026 SpectralSplats.
-    </div>
+    <div class="container">&copy; 2026 SpectralSplats.</div>
   </footer>
 
 </body>
