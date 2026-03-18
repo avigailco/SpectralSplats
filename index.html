@@ -14,7 +14,7 @@
       --card: #f8fafc;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
-      --maxw: 1400px; /* Increased to allow bigger videos */
+      --maxw: 1000px;
     }
 
     * { box-sizing: border-box; }
@@ -25,73 +25,77 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      font-size: 1.2rem; /* Keep font readable/large */
     }
 
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
     .container {
-      width: min(var(--maxw), calc(100% - 48px));
+      width: min(var(--maxw), calc(100% - 32px));
       margin: 0 auto;
     }
 
-    .hero { padding: 64px 0 32px; text-align: center; }
+    .hero { padding: 56px 0 24px; text-align: center; }
     .title {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: 1.1;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.12;
       font-weight: 800;
-      margin: 0 auto 20px;
-      letter-spacing: -0.03em;
+      margin: 0 auto 16px;
+      max-width: 980px;
+      letter-spacing: -0.02em;
     }
 
-    .authors { color: var(--muted); margin: 12px 0; font-size: 1.3rem; }
+    .authors { color: var(--muted); margin: 8px 0; font-size: 1.1rem; }
 
     .button-row {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
-      margin: 32px 0;
+      margin: 24px 0 10px;
     }
 
     .btn {
       display: inline-block;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: white;
       color: var(--text);
-      font-weight: 700;
-      text-decoration: none;
+      font-weight: 600;
       transition: 0.2s ease;
     }
 
     .btn:hover {
+      text-decoration: none;
       border-color: var(--accent);
       background: var(--accent-soft);
     }
 
     .section {
-      padding: 64px 0;
+      padding: 48px 0;
       border-top: 1px solid var(--border);
     }
 
     .section h2 {
-      font-size: 2.5rem;
-      margin: 0 0 32px;
-      font-weight: 800;
+      font-size: 1.8rem;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
     }
 
     .section h3 {
-      font-size: 1.8rem;
-      margin: 0 0 20px;
+      font-size: 1.3rem;
+      margin: 0 0 16px;
     }
 
+    /* Figure Block: Ensures caption matches image width */
     .figure-block {
-      display: table;
-      margin: 0 0 40px 0;
-      width: 100%;
+      display: table; /* Shrink-wraps to the image width */
+      margin: 0 0 32px 0;
+      width: 100%; /* Default to full width for large images */
     }
 
-    .figure-block img, .figure-block video {
+    .figure-block img {
       width: 100%;
       height: auto;
       border-radius: 12px;
@@ -104,84 +108,35 @@
       display: table-caption;
       caption-side: bottom;
       color: var(--muted);
-      font-size: 1.1rem;
-      padding-top: 16px;
+      font-size: 0.95rem;
+      padding-top: 12px;
+      line-height: 1.5;
       text-align: left;
     }
 
-    /* --- Qualitative Results 2x2 Grid --- */
-    .ablation-master-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* Two dogs per row */
-      gap: 32px;
-    }
-
-    .dog-card {
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
-      background: #ffffff;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    }
-
-    .dog-card h3 {
-      margin: 0 0 16px;
-      border-bottom: 2px solid var(--accent-soft);
-      padding-bottom: 8px;
-    }
-
-    .ablation-grid {
-      display: grid;
-      /* Reduced first column width to give more space to videos */
-      grid-template-columns: 100px repeat(5, 1fr); 
-      gap: 8px;
-      align-items: center;
-      text-align: center;
-    }
-
-    .grid-header {
-      font-weight: 700;
-      font-size: 0.85rem;
-      color: var(--muted);
-      padding-bottom: 8px;
-    }
-
-    .method-label {
-      font-weight: 700;
-      text-align: left;
-      font-size: 0.85rem;
-      color: var(--text);
-      line-height: 1.2;
-    }
-
-    .grid-item video {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: #f8fafc;
-    }
+    .qualitative-row { margin-bottom: 48px; }
 
     pre {
       margin: 0;
-      padding: 24px;
+      padding: 20px;
       overflow-x: auto;
       border-radius: 12px;
       background: #0b1020;
       color: #f8fafc;
-      font-size: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
     footer {
-      padding: 64px 0;
+      padding: 40px 0 60px;
       color: var(--muted);
+      font-size: 0.9rem;
       text-align: center;
       border-top: 1px solid var(--border);
     }
 
-    @media (max-width: 1100px) {
-      .ablation-master-grid { grid-template-columns: 1fr; }
+    @media (max-width: 850px) {
+      .title { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -190,7 +145,9 @@
   <header class="hero">
     <div class="container">
       <h1 class="title">SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision</h1>
-      <div class="authors">Avigail Cohen Rimon, Amir Mann, Mirela Ben Chen, Or Litany</div>
+      <div class="authors">
+        Avigail Cohen Rimon, Amir Mann, Mirela Ben Chen, Or Litany
+      </div>
       <div class="button-row">
         <a class="btn" href="./SpectralSplats_paper.png">Paper</a>
         <a class="btn" href="./SpectralSplats_supp.png">Supplementary</a>
@@ -202,11 +159,12 @@
 
   <main class="container">
     
-    <section class="section" style="border-top:none; padding-top: 0;">
+    <section class="section" style="border-top:none; padding-top: 8px;">
       <div class="figure-block">
         <img src="static/teaser_gif.gif" alt="SpectralSplats teaser animation" />
+        
         <div class="caption">
-          <strong>SpectralSplats (right)</strong> enables robust tracking even from zero-overlap initializations, whereas pixel-only optimization (left) fails to converge.
+          <strong>SpectralSplats (right)</strong> enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (left) fails to converge.
         </div>
       </div>
     </section>
@@ -214,7 +172,7 @@
     <section class="section">
       <h2>Abstract</h2>
       <p>
-        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's footprint, gradients strictly vanish. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this by shifting optimization to the frequency domain.
+        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce SpectralSplats, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that SpectralSplats acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
       </p>
     </section>
 
@@ -234,95 +192,32 @@
       <div class="figure-block">
         <img src="static/demo_2d.png" alt="2D optimization demo" />
         <div class="caption">
-          Pixel-space supervision remains stranded near initialization, while spectral supervision produces coherent motion toward the target even under zero spatial overlap.
+          A simple 2D demo showing that pixel-space supervision remains stranded near initialization, while spectral supervision produces coherent motion toward the target.
         </div>
       </div>
     </section>
 
     <section class="section">
       <h2>Qualitative Results</h2>
-      <p style="margin-bottom: 32px; color: var(--muted);">
-        Comparison of <strong>MLP+Pixel</strong> vs. <strong>MLP+Spectral</strong> supervision across spatial shifts (0.0 to 0.8).
-      </p>
-
-      <div class="ablation-master-grid">
-        
-        <div class="dog-card">
-          <h3>Shiba</h3>
-          <div class="ablation-grid">
-            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
-            <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
+      
+      <div class="qualitative-row">
+        <h3>SC4d</h3>
+        <div class="figure-block">
+          <img src="static/sc4d_qualitative.png" alt="SC4D qualitative results" />
+          <div class="caption">
+            Qualitative comparison on synthetic SC4d data under large spatial shifts. While pixel-only optimization fails to recover the correct pose—often causing the object to drift out of frame—our method achieves superior alignment and preserves structural coherence across both training and novel views.
           </div>
         </div>
+      </div>
 
-        <div class="dog-card">
-          <h3>French</h3>
-          <div class="ablation-grid">
-            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
-            <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
+      <div class="qualitative-row">
+        <h3>GART</h3>
+        <div class="figure-block">
+          <img src="static/gart_qualitative.png" alt="GART qualitative results" />
+          <div class="caption">
+            Qualitative comparison on real-world GART dog show data under large spatial shifts. Our method more effectively recovers pose and structure, whereas pixel-only optimization results in significant blur and incorrect alignment.
           </div>
         </div>
-
-        <div class="dog-card">
-          <h3>English</h3>
-          <div class="ablation-grid">
-            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
-            <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
-          </div>
-        </div>
-
-        <div class="dog-card">
-          <h3>Hound</h3>
-          <div class="ablation-grid">
-            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
-            <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -337,7 +232,9 @@
   </main>
 
   <footer>
-    <div class="container">&copy; 2026 SpectralSplats.</div>
+    <div class="container">
+      &copy; 2026 SpectralSplats.
+    </div>
   </footer>
 
 </body>
