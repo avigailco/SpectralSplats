@@ -9,12 +9,11 @@
     :root {
       --bg: #ffffff;
       --text: #111111;
-      --muted: #666666;
+      --muted: #52525b;
       --border: #e5e7eb;
-      --card: #f8fafc;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
-      --maxw: 1200px; 
+      --maxw: 1300px; /* Increased container width to balance large text */
     }
 
     * { box-sizing: border-box; }
@@ -25,140 +24,144 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      /* Increased base font size */
-      font-size: 1.15rem; 
-      line-height: 1.7;
+      /* Bolder base font size */
+      font-size: 1.25rem; 
+      line-height: 1.65;
     }
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     .container {
-      width: min(var(--maxw), calc(100% - 32px));
+      width: min(var(--maxw), calc(100% - 48px));
       margin: 0 auto;
     }
 
-    .hero { padding: 64px 0 32px; text-align: center; }
+    .hero { padding: 80px 0 48px; text-align: center; }
     
     .title {
-      /* Increased title size */
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      line-height: 1.1;
-      font-weight: 800;
-      margin: 0 auto 20px;
-      max-width: 1000px;
-      letter-spacing: -0.02em;
+      font-size: clamp(2.5rem, 6vw, 4.5rem); /* Much larger title */
+      line-height: 1.05;
+      font-weight: 900;
+      margin: 0 auto 24px;
+      max-width: 1100px;
+      letter-spacing: -0.04em;
     }
 
     .authors { 
       color: var(--muted); 
-      margin: 12px 0; 
-      font-size: 1.3rem; /* Increased */
+      margin: 16px 0; 
+      font-size: 1.5rem; /* Larger authors */
+      font-weight: 500;
     }
 
     .button-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 16px;
       justify-content: center;
-      margin: 32px 0 12px;
+      margin: 40px 0 20px;
     }
 
     .btn {
       display: inline-block;
-      padding: 12px 24px;
+      padding: 14px 32px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: white;
       color: var(--text);
-      font-weight: 600;
-      font-size: 1.05rem; /* Increased */
-      transition: 0.2s ease;
+      font-weight: 700;
+      font-size: 1.15rem; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
     }
 
     .btn:hover {
-      text-decoration: none;
       border-color: var(--accent);
       background: var(--accent-soft);
+      transform: translateY(-2px);
     }
 
     .section {
-      padding: 56px 0;
+      padding: 72px 0;
       border-top: 1px solid var(--border);
     }
 
     .section h2 {
-      font-size: 2.2rem; /* Increased */
-      margin: 0 0 28px;
-      letter-spacing: -0.02em;
+      font-size: 2.8rem; /* Bold, large headers */
+      margin: 0 0 32px;
+      letter-spacing: -0.03em;
+      font-weight: 800;
     }
 
     .section h3 {
-      font-size: 1.6rem; /* Increased */
+      font-size: 1.8rem;
       margin: 0 0 20px;
+      font-weight: 700;
     }
 
     .figure-block {
       display: table;
-      margin: 0 0 40px 0;
+      margin: 0 0 48px 0;
       width: 100%;
     }
 
     .figure-block img, .figure-block video {
       width: 100%;
       height: auto;
-      border-radius: 12px;
+      border-radius: 16px;
       border: 1px solid var(--border);
       display: block;
       background: #fff;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
     }
 
     .caption {
       display: table-caption;
       caption-side: bottom;
       color: var(--muted);
-      font-size: 1.05rem; /* Increased */
-      padding-top: 16px;
+      font-size: 1.15rem; /* Highly readable captions */
+      padding-top: 20px;
       line-height: 1.6;
       text-align: left;
     }
 
-    /* --- Ablation 2x2 Grid Styles --- */
+    /* --- Ablation Grid Styles (Large) --- */
     .ablation-master-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 32px;
+      gap: 40px;
+      margin-top: 40px;
     }
 
     .dog-card {
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
+      border-radius: 20px;
+      padding: 32px;
       background: #ffffff;
-      box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     }
 
     .dog-card h3 {
-      margin: 0 0 20px;
-      font-size: 1.5rem; /* Increased */
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
+      margin: 0 0 24px;
+      font-size: 1.8rem;
+      border-bottom: 2px solid var(--accent-soft);
+      padding-bottom: 12px;
     }
 
     .ablation-grid {
       display: grid;
-      grid-template-columns: 110px repeat(5, 1fr); /* Widened label column */
-      gap: 10px;
+      grid-template-columns: 140px repeat(5, 1fr); /* More width for MLP labels */
+      gap: 12px;
       align-items: center;
       text-align: center;
     }
 
     .grid-header {
-      font-weight: 700;
-      font-size: 0.85rem; /* Increased */
+      font-weight: 800;
+      font-size: 1rem; 
       color: var(--muted);
-      padding-bottom: 10px;
+      padding-bottom: 12px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
@@ -166,49 +169,42 @@
     .method-label {
       font-weight: 700;
       text-align: left;
-      font-size: 0.85rem; /* Increased */
+      font-size: 1rem; 
       color: var(--text);
-      line-height: 1.3;
+      line-height: 1.2;
     }
 
     .grid-item video {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 6px;
+      border-radius: 8px;
       border: 1px solid var(--border);
-      background: #f8fafc;
     }
 
     pre {
       margin: 0;
-      padding: 24px;
+      padding: 32px;
       overflow-x: auto;
-      border-radius: 12px;
-      background: #0b1020;
+      border-radius: 16px;
+      background: #0f172a;
       color: #f8fafc;
-      font-size: 1rem; /* Increased */
+      font-size: 1.1rem;
       line-height: 1.6;
     }
 
     footer {
-      padding: 48px 0 64px;
+      padding: 80px 0;
       color: var(--muted);
-      font-size: 1.05rem; /* Increased */
+      font-size: 1.1rem;
       text-align: center;
       border-top: 1px solid var(--border);
     }
 
     @media (max-width: 1100px) {
       .ablation-master-grid { grid-template-columns: 1fr; }
-      .ablation-grid { grid-template-columns: 100px repeat(5, 1fr); }
-    }
-
-    @media (max-width: 800px) {
-      .title { font-size: 2.4rem; }
-      .section h2 { font-size: 1.8rem; }
-      .ablation-grid { gap: 5px; grid-template-columns: 80px repeat(5, 1fr); }
-      .method-label, .grid-header { font-size: 0.7rem; }
+      .title { font-size: 3rem; }
+      .section h2 { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -231,7 +227,7 @@
 
   <main class="container">
     
-    <section class="section" style="border-top:none; padding-top: 8px;">
+    <section class="section" style="border-top:none; padding-top: 0;">
       <div class="figure-block">
         <img src="static/teaser_gif.gif" alt="SpectralSplats teaser animation" />
         <div class="caption">
@@ -243,7 +239,7 @@
     <section class="section">
       <h2>Abstract</h2>
       <p>
-        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce SpectralSplats, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that SpectralSplats acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
+        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent.
       </p>
     </section>
 
@@ -270,7 +266,7 @@
 
     <section class="section">
       <h2>Qualitative Results</h2>
-      <p style="margin-bottom: 32px; color: var(--muted);">
+      <p style="margin-bottom: 40px; color: var(--muted); font-size: 1.3rem;">
         Comparison of <strong>MLP+Pixel</strong> vs. <strong>MLP+Spectral</strong> supervision across spatial shifts (0.0 to 0.8).
       </p>
 
@@ -377,7 +373,7 @@
 
   <footer>
     <div class="container">
-      &copy; 2026 SpectralSplats.
+      &copy; 2026 SpectralSplats. All rights reserved.
     </div>
   </footer>
 
