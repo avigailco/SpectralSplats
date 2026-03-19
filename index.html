@@ -135,19 +135,24 @@
       text-align: left;
     }
 
-    /* --- ADDED OR MODIFIED STYLES START --- */
+    /* --- SPECIFIC ADJUSTMENTS --- */
     
-    /* MODIFIED to make Method Overview image match text width (1000px) */
-    .figure-block.method-figure {
+    /* Matches Teaser width to Abstract text width (1000px) */
+    .teaser-figure {
       max-width: 1000px;
+      margin: 0 auto 48px;
     }
 
-    /* ADDED to increase teaser caption font size */
+    /* Increases the 'Breaking the Locality Trap' image width */
+    .method-figure {
+      max-width: 1250px !important;
+    }
+
     .caption.teaser-caption {
       font-size: 1.6rem;
     }
 
-    /* --- ADDED OR MODIFIED STYLES END --- */
+    /* -------------------------- */
 
     .ablation-master-grid {
       display: grid;
@@ -237,7 +242,7 @@
   <main class="container">
     
     <section class="section" style="border-top:none; padding-top: 0;">
-      <div class="figure-block">
+      <div class="figure-block teaser-figure">
         <img src="static/teaser_gif.gif" alt="SpectralSplats teaser animation" />
         <div class="caption teaser-caption">
           <strong>SpectralSplats (right)</strong> enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (left) fails to converge.
