@@ -241,14 +241,19 @@
       </div>
     </section>
 
-    <section class="section">
+<section class="section">
       <h2>Method Overview</h2>
-      <div class="figure-block">
-        <h3>Why pixel loss fails</h3>
-        <img src="static/method_1d.png" alt="1D optimization analysis" />
-        <div class="caption">
-          A simple 1D optimization analysis illustrates how Spectral Moment Supervision with Frequency Annealing breaks the "locality trap." The simulation demonstrates severe failure for standard $L_{2}$ loss, whose gradient strictly vanishes when pulses have no spatial overlap, and also for static high-frequency spectral loss, which gets trapped by severe phase-wrapping local minima. In contrast, our approach constructs a globally convex optimization basin. Low-frequency supervision provides a directional gradient to pull the pulses together, while our principled annealing schedule seamlessly expands active bandwidth to achieve high-frequency spatial precision without phase-wrapping, guaranteeing convergence from any initialization.
-        </div>
+      <h3>Breaking the Locality Trap</h3>      
+      <div class="body-text">
+        <p>
+          Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard $L_2$ gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap." While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
+        </p>
+        <p>
+          <strong>SpectralSplats</strong> resolves this by supervising spectral moments through a principled frequency annealing schedule. By restricting initial supervision to low frequencies, we construct a globally convex basin of attraction that provides a valid, directional gradient from any initialization. As the spatial error decreases, our schedule seamlessly expands the active bandwidth to achieve high-frequency spatial precision without phase-wrapping, ensuring robust convergence.
+        </p>
+      </div>
+      <div class="figure-block method-figure">
+        <img src="static/method_1d.png" alt="1D optimization analysis comparing L2 loss, static spectral loss, and our annealed spectral supervision." />
       </div>
     </section>
 
