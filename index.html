@@ -9,9 +9,8 @@
     :root {
       --bg: #ffffff;
       --text: #111111;
-      --muted: #666666;
+      --muted: #52525b;
       --border: #e5e7eb;
-      --card: #f8fafc;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
       --maxw: 1400px; 
@@ -19,13 +18,14 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-      font-size: 1.2rem;
+      font-size: 1.4rem; /* Mega Size */
+      line-height: 1.65;
     }
 
     .container {
@@ -33,147 +33,154 @@
       margin: 0 auto;
     }
 
-    .hero { padding: 64px 0 32px; text-align: center; }
+    .hero { padding: 80px 0 48px; text-align: center; }
+    
     .title {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: 1.1;
-      font-weight: 800;
-      margin: 0 auto 20px;
-      letter-spacing: -0.03em;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1.05;
+      font-weight: 900;
+      margin: 0 auto 24px;
+      max-width: 1100px;
+      letter-spacing: -0.04em;
     }
 
-    .authors { color: var(--muted); margin: 12px 0; font-size: 1.3rem; }
+    .authors { 
+      color: var(--muted); 
+      margin: 16px 0; 
+      font-size: 1.7rem; 
+      font-weight: 500;
+    }
 
     .button-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 16px;
       justify-content: center;
-      margin: 32px 0;
+      margin: 40px 0;
     }
 
     .btn {
       display: inline-block;
-      padding: 12px 24px;
+      padding: 14px 32px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: white;
       color: var(--text);
       font-weight: 700;
+      font-size: 1.2rem;
       text-decoration: none;
-      transition: 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
     }
 
     .btn:hover {
       border-color: var(--accent);
       background: var(--accent-soft);
+      transform: translateY(-2px);
     }
 
     .section {
-      padding: 64px 0;
+      padding: 80px 0;
       border-top: 1px solid var(--border);
     }
 
     .section h2 {
-      font-size: 2.5rem;
+      font-size: 3.2rem;
       margin: 0 0 32px;
+      letter-spacing: -0.03em;
       font-weight: 800;
     }
 
     .section h3 {
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin: 0 0 20px;
+      font-weight: 700;
     }
 
     .figure-block {
       display: table;
-      margin: 0 0 40px 0;
+      margin: 0 0 48px 0;
       width: 100%;
     }
 
     .figure-block img, .figure-block video {
       width: 100%;
       height: auto;
-      border-radius: 12px;
+      border-radius: 16px;
       border: 1px solid var(--border);
       display: block;
       background: #fff;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
     }
 
     .caption {
       display: table-caption;
       caption-side: bottom;
       color: var(--muted);
-      font-size: 1.1rem;
-      padding-top: 16px;
+      font-size: 1.25rem;
+      padding-top: 20px;
+      line-height: 1.6;
       text-align: left;
     }
 
+    /* Grid Styles */
     .ablation-master-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr; 
-      gap: 32px;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
     }
 
     .dog-card {
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 24px;
+      padding: 32px;
       background: #ffffff;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    }
-
-    .dog-card h3 {
-      margin: 0 0 16px;
-      border-bottom: 2px solid var(--accent-soft);
-      padding-bottom: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     }
 
     .ablation-grid {
       display: grid;
-      grid-template-columns: 100px repeat(5, 1fr); 
-      gap: 8px;
+      grid-template-columns: 140px repeat(5, 1fr);
+      gap: 12px;
       align-items: center;
       text-align: center;
     }
 
     .grid-header {
-      font-weight: 700;
-      font-size: 0.85rem;
+      font-weight: 800;
+      font-size: 1.1rem;
       color: var(--muted);
-      padding-bottom: 8px;
+      padding-bottom: 12px;
     }
 
     .method-label {
       font-weight: 700;
       text-align: left;
-      font-size: 0.85rem;
+      font-size: 1rem;
       color: var(--text);
-      line-height: 1.2;
     }
 
-    /* Styles to make GIFs look identical to MP4s */
     .grid-item img, .grid-item video {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 6px;
+      border-radius: 8px;
       border: 1px solid var(--border);
-      background: #f8fafc;
     }
 
     pre {
       margin: 0;
-      padding: 24px;
+      padding: 32px;
       overflow-x: auto;
-      border-radius: 12px;
-      background: #0b1020;
+      border-radius: 16px;
+      background: #0f172a;
       color: #f8fafc;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
     footer {
-      padding: 64px 0;
+      padding: 80px 0;
       color: var(--muted);
       text-align: center;
       border-top: 1px solid var(--border);
@@ -211,13 +218,6 @@
     </section>
 
     <section class="section">
-      <h2>Abstract</h2>
-      <p>
-        3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's footprint, gradients strictly vanish. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this by shifting optimization to the frequency domain.
-      </p>
-    </section>
-
-    <section class="section">
       <h2>Method Overview</h2>
       <h3>Why pixel loss fails</h3>
       <div class="figure-block">
@@ -233,33 +233,30 @@
       <div class="figure-block">
         <img src="static/demo_2d.png" alt="2D optimization demo" />
         <div class="caption">
-          Pixel-space supervision remains stranded near initialization, while spectral supervision produces coherent motion toward the target.
+          Pixel-space supervision remains stranded, while spectral supervision produces coherent motion toward the target.
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2>SC4D Benchmark</h2>
-      <p style="margin-bottom: 32px; color: var(--muted);">
-        Comparison of <strong>MLP+Pixel</strong> vs. <strong>MLP+Spectral</strong> on synthetic sequences across spatial shifts.
-      </p>
+      <h2>Qualitative Results (SC4D Benchmark)</h2>
       <div class="ablation-master-grid">
         <div class="dog-card">
           <h3>SpiderMan</h3>
           <div class="ablation-grid">
             <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed__pixel__shift0.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed__pixel__shift0_2.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed__pixel__shift0_4.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed__pixel__shift0_6.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed__pixel__shift0_8.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed_pixel_shift0.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed_pixel_shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed_pixel_shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed_pixel_shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed_pixel_shift0_8.gif"></div>
             <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed__ours__shift0.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed__ours__shift0_2.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed__ours__shift0_4.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed__ours__shift0_6.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed__ours__shift0_8.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed_ours_shift0.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed_ours_shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed_ours_shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed_ours_shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/dancing_spiderman_deformed_ours_shift0_8.gif"></div>
           </div>
         </div>
         <div class="dog-card">
@@ -267,17 +264,17 @@
           <div class="ablation-grid">
             <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated__pixel__shift0.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated__pixel__shift0_2.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated__pixel__shift0_4.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated__pixel__shift0_6.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated__pixel__shift0_8.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated_pixel_shift0.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated_pixel_shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated_pixel_shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated_pixel_shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated_pixel_shift0_8.gif"></div>
             <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated__ours__shift0.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated__ours__shift0_2.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated__ours__shift0_4.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated__ours__shift0_6.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated__ours__shift0_8.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated_ours_shift0.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated_ours_shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated_ours_shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated_ours_shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/flying_ironman_deformed_rotated_ours_shift0_8.gif"></div>
           </div>
         </div>
         <div class="dog-card">
@@ -285,17 +282,17 @@
           <div class="ablation-grid">
             <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed__pixel__shift0.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed__pixel__shift0_2.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed__pixel__shift0_4.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed__pixel__shift0_6.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed__pixel__shift0_8.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed_pixel_shift0.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed_pixel_shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed_pixel_shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed_pixel_shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed_pixel_shift0_8.gif"></div>
             <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed__ours__shift0.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed__ours__shift0_2.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed__ours__shift0_4.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed__ours__shift0_6.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed__ours__shift0_8.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed_ours_shift0.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed_ours_shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed_ours_shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed_ours_shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/walking_aurorus_deformed_ours_shift0_8.gif"></div>
           </div>
         </div>
         <div class="dog-card">
@@ -303,17 +300,17 @@
           <div class="ablation-grid">
             <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed__pixel__shift0.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed__pixel__shift0_2.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed__pixel__shift0_4.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed__pixel__shift0_6.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed__pixel__shift0_8.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed_pixel_shift0.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed_pixel_shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed_pixel_shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed_pixel_shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed_pixel_shift0_8.gif"></div>
             <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed__ours__shift0.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed__ours__shift0_2.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed__ours__shift0_4.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed__ours__shift0_6.gif"></div>
-            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed__ours__shift0_8.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed_ours_shift0.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed_ours_shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed_ours_shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed_ours_shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/page_gifs/sc4d/looking_up_kitten_deformed_ours_shift0_8.gif"></div>
           </div>
         </div>
       </div>
@@ -321,92 +318,26 @@
 
     <section class="section">
       <h2>Qualitative Results (GART Dogs)</h2>
-      <p style="margin-bottom: 32px; color: var(--muted);">
-        Comparison of <strong>MLP+Pixel</strong> vs. <strong>MLP+Spectral</strong> supervision on real-world GART data.
-      </p>
       <div class="ablation-master-grid">
         <div class="dog-card">
           <h3>Shiba</h3>
           <div class="ablation-grid">
             <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
             <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/pixel_step_final.mp4"></video></div>
             <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/spectral_step_final.mp4"></video></div>
           </div>
         </div>
-        <div class="dog-card">
-          <h3>French</h3>
-          <div class="ablation-grid">
-            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
-            <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
-          </div>
         </div>
-        <div class="dog-card">
-          <h3>English</h3>
-          <div class="ablation-grid">
-            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
-            <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
-          </div>
-        </div>
-        <div class="dog-card">
-          <h3>Hound</h3>
-          <div class="ablation-grid">
-            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
-            <div class="method-label">MLP+Pixel</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/pixel_step_final.mp4" type="video/mp4"></video></div>
-            <div class="method-label">MLP+Spectral</div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/spectral_step_final.mp4" type="video/mp4"></video></div>
-            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/spectral_step_final.mp4" type="video/mp4"></video></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="citation">
-      <h2>Citation</h2>
-      <pre>@inproceedings{spectralsplats2026,
-  title={SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision},
-  author={Cohen Rimon, Avigail and Mann, Amir and Ben Chen, Mirela and Litany, Or},
-  year={2026}
-}</pre>
     </section>
   </main>
 
