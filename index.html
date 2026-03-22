@@ -60,6 +60,17 @@
       font-weight: 400;
     }
 
+    .authors a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .authors a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
     .button-row {
       display: flex;
       flex-wrap: wrap;
@@ -102,27 +113,10 @@
       font-weight: 700;
     }
 
-    .section h3 {
-      font-size: 2.2rem;
-      margin: 0 0 24px;
-      font-weight: 600;
-    }
-
     .figure-block {
       display: table;
       margin: 0 auto 48px; 
       width: 100%;
-      max-width: 90%;
-    }
-
-    .figure-block img, .figure-block video {
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      display: block;
-      background: #fff;
-      box-shadow: 0 12px 40px -12px rgba(0,0,0,0.1);
     }
 
     .caption {
@@ -138,7 +132,7 @@
     /* --- TEASER PANEL STYLES --- */
     
     .teaser-figure {
-      max-width: 1250px; /* Matched to 'Locality Trap' section */
+      max-width: 1250px; 
       margin: 0 auto 48px;
     }
 
@@ -159,45 +153,45 @@
       font-size: 1.3rem;
       margin-bottom: 15px;
       color: #202124;
+      text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
     .media-container {
-      height: 380px; /* Adjusted height for wider panels */
+      height: 380px; 
       width: 100%;
       overflow: hidden;
       border-radius: 15px;
       border: 1px solid var(--border);
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
       background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+    /* Styling for Static Source/Target Images */
     .media-container img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Centers Source and Target automatically */
-      border: none !important;
-      box-shadow: none !important;
-      border-radius: 0 !important;
+      object-fit: contain; /* Keeps the whole image visible without stretching */
     }
 
-    /* Precise cropping for the 2-in-1 GIF */
-    .gif-side img {
-      width: 200%; 
-      max-width: none;
+    /* Robust Cropping for the 2-in-1 GIF */
+    .gif-panel {
+      background-image: url('static/teaser_gif.gif');
+      background-size: 200% 100%; /* Forces the GIF to be double width of the container */
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
     }
 
-    .pixel-panel img { 
-      object-position: left center; /* Shows exact left half */
-    }
-    
-    .ours-panel img { 
-      object-position: right center; /* Shows exact right half */
-    }
+    .pixel-crop { background-position: left center; }
+    .ours-crop { background-position: right center; }
 
     .caption.teaser-caption {
       font-size: 1.5rem;
-      max-width: 1250px; /* Matched width */
+      max-width: 1250px;
       margin: 0 auto;
     }
 
@@ -282,7 +276,11 @@
   <header class="hero">
     <div class="container">
       <h1 class="title">SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision</h1>
-      <div class="authors">Avigail Cohen Rimon, Amir Mann, Mirela Ben Chen, Or Litany</div>
+      <div class="authors">
+        Avigail Cohen Rimon, Amir Mann, 
+        <a href="https://mirela.net.technion.ac.il/" target="_blank">Mirela Ben Chen</a>, 
+        <a href="https://orlitany.github.io/" target="_blank">Or Litany</a>
+      </div>
       
       <div class="button-row">
         <a class="btn" href="static/project_page_paper.pdf"><i class="fa-regular fa-file-pdf"></i> Paper</a>
@@ -307,29 +305,29 @@
           </div>
 
           <div class="teaser-item">
-            <span>PIXEL</span>
-            <div class="media-container gif-side pixel-panel">
-              <img src="static/teaser_gif.gif" alt="Pixel optimization result">
-            </div>
-          </div>
-
-          <div class="teaser-item">
-            <span>OURS</span>
-            <div class="media-container gif-side ours-panel">
-              <img src="static/teaser_gif.gif" alt="SpectralSplats result">
-            </div>
-          </div>
-
-          <div class="teaser-item">
             <span>TARGET</span>
             <div class="media-container">
               <img src="static/teaser_fig/target.png" alt="Target frame">
             </div>
           </div>
+
+          <div class="teaser-item">
+            <span>PIXEL</span>
+            <div class="media-container">
+              <div class="gif-panel pixel-crop"></div>
+            </div>
+          </div>
+
+          <div class="teaser-item">
+            <span>OURS</span>
+            <div class="media-container">
+              <div class="gif-panel ours-crop"></div>
+            </div>
+          </div>
         </div>
 
         <div class="caption teaser-caption">
-          Source (far left) and target (far right) frames. <strong>SpectralSplats (OURS panel)</strong> enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (PIXEL panel) fails to converge.
+          Source (far left) and target (second from left) frames. <strong>SpectralSplats (OURS panel)</strong> enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (PIXEL panel) fails to converge.
         </div>
       </div>
     </section>
