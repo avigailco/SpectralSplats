@@ -53,6 +53,7 @@
       color: #202124;
     }
 
+    /* --- AUTHOR & AFFILIATION STYLES --- */
     .authors { 
       margin: 20px 0 10px; 
       font-size: 1.8rem; 
@@ -72,6 +73,7 @@
     .affiliations span { margin: 0 15px; }
     sup { font-size: 0.65em; margin-left: 2px; }
 
+    /* --- TEASER PANEL STYLES --- */
     .teaser-figure {
       max-width: 1250px; 
       margin: 0 auto 48px;
@@ -132,44 +134,7 @@
       line-height: 1.5;
     }
 
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin: 40px 0;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      border-radius: 999px;
-      background: var(--btn-bg);
-      color: white;
-      font-weight: 500;
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-    }
-
-    .btn:hover {
-      background: #3c4043;
-      transform: translateY(-2px);
-    }
-
-    .section { padding: 90px 0; border-top: 1px solid var(--border); }
-
-    .section h2 {
-      text-align: center; font-size: 3.5rem; margin: 0 0 48px;
-      letter-spacing: -0.03em; font-weight: 700;
-    }
-
-    .method-figure { max-width: 1250px !important; margin: 0 auto 48px; display: table; }
-    .method-figure img { width: 100%; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 12px 40px -12px rgba(0,0,0,0.1); }
-
+    /* --- TRACKING RESULTS STYLES --- */
     .ablation-master-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -214,6 +179,45 @@
       border: 1.5px solid #eceff1;
       background: #fff;
     }
+
+    /* --- GENERAL STYLES --- */
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 40px 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 999px;
+      background: var(--btn-bg);
+      color: white;
+      font-weight: 500;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+
+    .btn:hover {
+      background: #3c4043;
+      transform: translateY(-2px);
+    }
+
+    .section { padding: 90px 0; border-top: 1px solid var(--border); }
+
+    .section h2 {
+      text-align: center; font-size: 3.5rem; margin: 0 0 48px;
+      letter-spacing: -0.03em; font-weight: 700;
+    }
+
+    .method-figure { max-width: 1250px !important; margin: 0 auto 48px; display: table; }
+    .method-figure img { width: 100%; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 12px 40px -12px rgba(0,0,0,0.1); }
 
     pre {
       padding: 32px; border-radius: 20px; background: #202124; color: #e8eaed; font-size: 1.1rem;
@@ -260,11 +264,11 @@
         <div class="teaser-grid">
           <div class="teaser-item">
             <span class="label">SOURCE</span>
-            <div class="media-container"><img src="static/teaser_fig/source.png" class="static-frame"></div>
+            <div class="media-container"><img src="static/teaser_fig/source.png" class="static-frame" alt="Source frame"></div>
           </div>
           <div class="teaser-item">
             <span class="label">TARGET</span>
-            <div class="media-container"><img src="static/teaser_fig/target.png" class="static-frame"></div>
+            <div class="media-container"><img src="static/teaser_fig/target.png" class="static-frame" alt="Target frame"></div>
           </div>
           <div class="teaser-item">
             <span class="label">PIXEL</span>
@@ -276,7 +280,7 @@
           </div>
         </div>
         <div class="caption teaser-caption">
-          Starting from a <strong>Source</strong> and a spatially distant <strong>Target</strong> with zero initial overlap, standard photometric optimization (<strong>PIXEL</strong>) fails to provide a directional gradient. <strong>SpectralSplats (OURS)</strong> constructs a global basin of attraction that ensures robust convergence even from these disconnected initializations.
+          Starting from a <strong>Source</strong> and a spatially distant <strong>Target</strong> with zero initial overlap, standard photometric optimization (<strong>PIXEL</strong>) fails to provide a directional gradient, leaving the model stuck at the initialization. By shifting supervision to the frequency domain, <strong>SpectralSplats (OURS)</strong> constructs a global basin of attraction that ensures robust convergence even from these "disconnected" initializations.
         </div>
       </div>
     </section>
@@ -285,19 +289,26 @@
       <h2>Abstract</h2>
       <div style="max-width: 1000px; margin: 0 auto; text-align: justify;">
         <p>
-          3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild" remains fragile. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients vanish. We introduce SpectralSplats, a robust tracking framework that resolves this problem by shifting the optimization objective from the spatial to the frequency domain. By supervising via a set of Spectral Moments, we construct a global basin of attraction, ensuring a valid, directional gradient toward the target exists across the entire image domain.
+          3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce SpectralSplats, a robust tracking framework that resolves this ``vanishing gradient'' problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that SpectralSplats acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
         </p>
       </div>
     </section>
 
     <section class="section">
       <h2>Breaking the Locality Trap</h2>
-      <div style="max-width: 1250px; margin: 0 auto; text-align: justify;">
-        <p>
-          Standard photometric objectives implicitly rely on spatial overlap. As shown in the 1D analysis below, standard L2 gradients strictly vanish when pulses have no spatial overlap. <strong>SpectralSplats</strong> resolves this by supervising spectral moments through a principled frequency annealing schedule, ensuring robust convergence from any initialization.
-        </p>
+      <div style="max-width: 1250px; margin: 0 auto; text-align: center;">
+        <div style="max-width: 1250px; margin: 0 auto; text-align: justify;">
+          <p>
+            Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard L2 gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap." While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
+          </p>
+          <p>
+            <strong>SpectralSplats</strong> resolves this by supervising spectral moments through a principled frequency annealing schedule. By restricting initial supervision to low frequencies, we construct a globally convex basin of attraction that provides a valid, directional gradient from any initialization. As the spatial error decreases, our schedule seamlessly expands the active bandwidth to achieve high-frequency spatial precision without phase-wrapping, ensuring robust convergence.
+          </p>
+        </div>
+      </div> 
+      <div class="method-figure">
+        <img src="static/method_1d.png" alt="1D optimization analysis comparing L2 loss, static spectral loss, and our annealed spectral supervision.">
       </div>
-      <div class="method-figure"><img src="static/method_1d.png"></div>
     </section>
 
     <section class="section">
