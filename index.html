@@ -137,13 +137,31 @@
 
     /* --- SPECIFIC ADJUSTMENTS --- */
     
-    /* Matches Teaser width to Abstract text width (1000px) */
     .teaser-figure {
       max-width: 1000px;
       margin: 0 auto 48px;
     }
 
-    /* Increases the 'Breaking the Locality Trap' image width */
+    /* Labels for Source/Target and Pixel/Ours */
+    .teaser-label {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .method-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.6rem;
+      padding-bottom: 10px;
+    }
+
     .method-figure {
       max-width: 1250px !important;
     }
@@ -231,7 +249,7 @@
       <div class="authors">Avigail Cohen Rimon, Amir Mann, Mirela Ben Chen, Or Litany</div>
       
       <div class="button-row">
-        <a class="btn" href="./SpectralSplats_paper.png"><i class="fa-regular fa-file-pdf"></i> Paper</a>
+        <a class="btn" href="static/project_page_paper.pdf"><i class="fa-regular fa-file-pdf"></i> Paper</a>
         <a class="btn" href="./SpectralSplats_supp.png"><i class="fa-solid fa-file-circle-plus"></i> Supplementary</a>
         <a class="btn" href="#"><i class="fa-brands fa-github"></i> Code (Soon)</a>
         <a class="btn" href="#citation"><i class="fa-solid fa-quote-left"></i> Citation</a>
@@ -243,7 +261,25 @@
     
     <section class="section" style="border-top:none; padding-top: 0;">
       <div class="figure-block teaser-figure">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; text-align: center;">
+          <div>
+            <span class="teaser-label">Source</span>
+            <img src="static/teaser_fig/source.png" style="max-width: 280px; margin: 0 auto; border:none; box-shadow:none;">
+          </div>
+          <div>
+            <span class="teaser-label">Target</span>
+            <img src="static/teaser_fig/target.png" style="max-width: 280px; margin: 0 auto; border:none; box-shadow:none;">
+          </div>
+        </div>
+
+        <div class="method-header">
+          <div>Pixel</div>
+          <div>Ours</div>
+        </div>
+
         <img src="static/teaser_gif.gif" alt="SpectralSplats teaser animation" />
+        
         <div class="caption teaser-caption">
           <strong>SpectralSplats (right)</strong> enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (left) fails to converge.
         </div>
