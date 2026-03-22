@@ -18,7 +18,6 @@
       --card-bg: #ffffff;
       --accent: #1a73e8;
       --btn-bg: #202124; 
-      /* Reduced for better side margins and spacious feel */
       --maxw: 1050px; 
     }
 
@@ -35,7 +34,6 @@
     }
 
     .container {
-      /* Increased side padding (from 80px to 120px) to prevent "too close" look */
       width: min(var(--maxw), calc(100% - 120px));
       margin: 0 auto;
     }
@@ -74,7 +72,6 @@
     .affiliations span { margin: 0 15px; }
     sup { font-size: 0.7em; margin-left: 1px; vertical-align: baseline; position: relative; top: -0.4em; }
 
-    /* --- TEASER PANEL STYLES --- */
     .teaser-figure {
       max-width: 100%; 
       margin: 0 auto 50px;
@@ -132,7 +129,6 @@
       text-align: justify;
     }
 
-    /* --- TRACKING RESULTS STYLES --- */
     .ablation-master-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -178,7 +174,6 @@
       background: #fff;
     }
 
-    /* --- GENERAL STYLES --- */
     .button-row {
       display: flex;
       flex-wrap: wrap;
@@ -210,7 +205,6 @@
       letter-spacing: -0.02em; font-weight: 700;
     }
 
-    /* Tracking Section Titles: Reduced Font Size */
     .tracking-section-title {
       text-align: center; 
       font-size: 2.0rem; 
@@ -316,7 +310,7 @@
         </p>
       </div>
       <div class="method-figure">
-        <img src="static/method_1d.png" alt="1D optimization analysis">
+        <img src="static/method_1d.png" alt="1D optimization analysis comparing L2 loss, static spectral loss, and our annealed spectral supervision.">
       </div>
     </section>
 
@@ -400,6 +394,10 @@
             <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__ours__shift0_8.gif"></div>
           </div>
         </div>
+      </div>
+
+      <div class="method-figure" style="margin-top: 40px;">
+        <img src="static/sc4d_graphs.jpg" alt="SC4D shift experiment metrics for training and novel views">
       </div>
 
       <h3 class="tracking-section-title">GART (Dog Show) Tracking</h3>
