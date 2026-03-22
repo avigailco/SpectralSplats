@@ -53,27 +53,25 @@
       color: #202124;
     }
 
-    /* --- AUTHOR & AFFILIATION STYLES --- */
     .authors { 
       margin: 20px 0 10px; 
       font-size: 1.8rem; 
       font-weight: 400;
       color: #202124;
-     Sup { font-size: 0.65em; margin-left: 2px; }
     }
 
     .authors a { color: inherit; text-decoration: none; transition: color 0.2s; }
     .authors a:hover { color: var(--accent); }
 
     .affiliations {
-      font-size: 1.5rem; /* Increased as requested */
+      font-size: 1.5rem;
       color: var(--muted);
       margin-bottom: 10px;
     }
 
     .affiliations span { margin: 0 15px; }
+    sup { font-size: 0.65em; margin-left: 2px; }
 
-    /* --- TEASER PANEL STYLES --- */
     .teaser-figure {
       max-width: 1250px; 
       margin: 0 auto 48px;
@@ -134,54 +132,6 @@
       line-height: 1.5;
     }
 
-    /* --- TRACKING RESULTS STYLES --- */
-    .ablation-master-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 40px;
-    }
-
-    .dog-card {
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 24px;
-      background: #fdfdfd;
-    }
-
-    .ablation-grid {
-      display: grid;
-      grid-template-columns: 130px repeat(5, 1fr); 
-      gap: 12px;
-      align-items: center;
-      text-align: center;
-    }
-
-    .grid-header {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--muted);
-      padding-bottom: 12px;
-    }
-
-    .method-label {
-      font-weight: 700;
-      text-align: left;
-      font-size: 1.05rem;
-      color: var(--text);
-     Sup { font-size: 0.65em; }
-    }
-
-    .grid-item img, .grid-item video {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 1.5px solid #eceff1;
-      background: #fff;
-    }
-
-    /* --- GENERAL STYLES --- */
     .button-row {
       display: flex;
       flex-wrap: wrap;
@@ -220,13 +170,58 @@
     .method-figure { max-width: 1250px !important; margin: 0 auto 48px; display: table; }
     .method-figure img { width: 100%; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 12px 40px -12px rgba(0,0,0,0.1); }
 
+    .ablation-master-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .dog-card {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 24px;
+      background: #fdfdfd;
+    }
+
+    .ablation-grid {
+      display: grid;
+      grid-template-columns: 130px repeat(5, 1fr); 
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .grid-header {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--muted);
+      padding-bottom: 12px;
+    }
+
+    .method-label {
+      font-weight: 700;
+      text-align: left;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .grid-item img, .grid-item video {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1.5px solid #eceff1;
+      background: #fff;
+    }
+
     pre {
       padding: 32px; border-radius: 20px; background: #202124; color: #e8eaed; font-size: 1.1rem;
     }
 
-    @media (max-width: 1100px) {
-      .teaser-grid { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 1200px) {
       .ablation-master-grid { grid-template-columns: 1fr; }
+      .teaser-grid { grid-template-columns: 1fr 1fr; }
       .title { font-size: 3.5rem; }
     }
   </style>
@@ -344,6 +339,42 @@
             <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__ours__shift0_8.gif"></div>
           </div>
         </div>
+        <div class="dog-card">
+          <h3>Kitten</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><img src="static/sc4d/looking_up_kitten_deformed__pixel__shift0.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/looking_up_kitten_deformed__pixel__shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/looking_up_kitten_deformed__pixel__shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/looking_up_kitten_deformed__pixel__shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/looking_up_kitten_deformed__pixel__shift0_8.gif"></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><img src="static/sc4d/looking_up_kitten_deformed__ours__shift0.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/looking_up_kitten_deformed__ours__shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/looking_up_kitten_deformed__ours__shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/looking_up_kitten_deformed__ours__shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/looking_up_kitten_deformed__ours__shift0_8.gif"></div>
+          </div>
+        </div>
+        <div class="dog-card">
+          <h3>Aurorus</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__pixel__shift0.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__pixel__shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__pixel__shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__pixel__shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__pixel__shift0_8.gif"></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__ours__shift0.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__ours__shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__ours__shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__ours__shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__ours__shift0_8.gif"></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -384,6 +415,42 @@
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/spectral_step_final.mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/spectral_step_final.mp4"></video></div>
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/spectral_step_final.mp4"></video></div>
+          </div>
+        </div>
+        <div class="dog-card">
+          <h3>English</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/pixel_step_final.mp4"></video></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/spectral_step_final.mp4"></video></div>
+          </div>
+        </div>
+        <div class="dog-card">
+          <h3>Hound</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/pixel_step_final.mp4"></video></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/spectral_step_final.mp4"></video></div>
           </div>
         </div>
       </div>
