@@ -59,23 +59,21 @@
       font-size: 1.8rem; 
       font-weight: 400;
       color: #202124;
+     Sup { font-size: 0.65em; margin-left: 2px; }
     }
 
     .authors a { color: inherit; text-decoration: none; transition: color 0.2s; }
     .authors a:hover { color: var(--accent); }
 
     .affiliations {
-      font-size: 1.3rem;
+      font-size: 1.5rem; /* Increased as requested */
       color: var(--muted);
       margin-bottom: 10px;
     }
 
     .affiliations span { margin: 0 15px; }
 
-    sup { font-size: 0.65em; margin-left: 2px; }
-
     /* --- TEASER PANEL STYLES --- */
-    
     .teaser-figure {
       max-width: 1250px; 
       margin: 0 auto 48px;
@@ -89,7 +87,6 @@
     }
 
     .teaser-item { text-align: center; }
-
     .teaser-item span.label {
       display: block;
       font-weight: 700;
@@ -102,7 +99,7 @@
 
     .media-container {
       width: 100%;
-      aspect-ratio: 1 / 1.25; /* Enforces identical proportions for all 4 panels */
+      aspect-ratio: 1 / 1.25; 
       overflow: hidden;
       border-radius: 15px;
       border: 1px solid var(--border);
@@ -111,11 +108,10 @@
       position: relative;
     }
 
-    /* Standardizes images to the same frame as the GIF */
     .media-container img.static-frame {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ensures it fills the frame exactly like the GIF panels */
+      object-fit: cover; 
     }
 
     .gif-panel {
@@ -125,8 +121,7 @@
       width: 100%;
       height: 100%;
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
     }
 
     .pixel-crop { background-position: left center; }
@@ -139,8 +134,54 @@
       line-height: 1.5;
     }
 
-    /* -------------------------- */
+    /* --- TRACKING RESULTS STYLES --- */
+    .ablation-master-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
 
+    .dog-card {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 24px;
+      background: #fdfdfd;
+    }
+
+    .ablation-grid {
+      display: grid;
+      grid-template-columns: 130px repeat(5, 1fr); 
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .grid-header {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--muted);
+      padding-bottom: 12px;
+    }
+
+    .method-label {
+      font-weight: 700;
+      text-align: left;
+      font-size: 1.05rem;
+      color: var(--text);
+     Sup { font-size: 0.65em; }
+    }
+
+    .grid-item img, .grid-item video {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1.5px solid #eceff1;
+      background: #fff;
+    }
+
+    /* --- GENERAL STYLES --- */
     .button-row {
       display: flex;
       flex-wrap: wrap;
@@ -185,6 +226,7 @@
 
     @media (max-width: 1100px) {
       .teaser-grid { grid-template-columns: 1fr 1fr; }
+      .ablation-master-grid { grid-template-columns: 1fr; }
       .title { font-size: 3.5rem; }
     }
   </style>
@@ -220,39 +262,26 @@
     
     <section class="section" style="border-top:none; padding-top: 0;">
       <div class="figure-block teaser-figure">
-        
         <div class="teaser-grid">
           <div class="teaser-item">
             <span class="label">SOURCE</span>
-            <div class="media-container">
-              <img src="static/teaser_fig/source.png" class="static-frame" alt="Source frame">
-            </div>
+            <div class="media-container"><img src="static/teaser_fig/source.png" class="static-frame"></div>
           </div>
-
           <div class="teaser-item">
             <span class="label">TARGET</span>
-            <div class="media-container">
-              <img src="static/teaser_fig/target.png" class="static-frame" alt="Target frame">
-            </div>
+            <div class="media-container"><img src="static/teaser_fig/target.png" class="static-frame"></div>
           </div>
-
           <div class="teaser-item">
             <span class="label">PIXEL</span>
-            <div class="media-container">
-              <div class="gif-panel pixel-crop"></div>
-            </div>
+            <div class="media-container"><div class="gif-panel pixel-crop"></div></div>
           </div>
-
           <div class="teaser-item">
             <span class="label">OURS</span>
-            <div class="media-container">
-              <div class="gif-panel ours-crop"></div>
-            </div>
+            <div class="media-container"><div class="gif-panel ours-crop"></div></div>
           </div>
         </div>
-
         <div class="caption teaser-caption">
-          Source (far left) and target (second from left) frames. <strong>SpectralSplats (OURS panel)</strong> enables robust tracking even from zero-overlap initializations by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (PIXEL panel) fails to converge.
+          Starting from a <strong>Source</strong> and a spatially distant <strong>Target</strong> with zero initial overlap, standard photometric optimization (<strong>PIXEL</strong>) fails to provide a directional gradient. <strong>SpectralSplats (OURS)</strong> constructs a global basin of attraction that ensures robust convergence even from these disconnected initializations.
         </div>
       </div>
     </section>
@@ -261,27 +290,104 @@
       <h2>Abstract</h2>
       <div style="max-width: 1000px; margin: 0 auto; text-align: justify;">
         <p>
-          3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce SpectralSplats, a robust tracking framework that resolves this ``vanishing gradient'' problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that SpectralSplats acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
+          3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild" remains fragile. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients vanish. We introduce SpectralSplats, a robust tracking framework that resolves this problem by shifting the optimization objective from the spatial to the frequency domain. By supervising via a set of Spectral Moments, we construct a global basin of attraction, ensuring a valid, directional gradient toward the target exists across the entire image domain.
         </p>
       </div>
     </section>
 
-<section class="section">
-  <h2>Breaking the Locality Trap</h2>
-  <div style="max-width: 1250px; margin: 0 auto; text-align: center;">
-    <div style="max-width: 1250px; margin: 0 auto; text-align: justify;">
-      <p>
-        Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard L2 gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap." While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
-      </p>
-      <p>
-        <strong>SpectralSplats</strong> resolves this by supervising spectral moments through a principled frequency annealing schedule. By restricting initial supervision to low frequencies, we construct a globally convex basin of attraction that provides a valid, directional gradient from any initialization. As the spatial error decreases, our schedule seamlessly expands the active bandwidth to achieve high-frequency spatial precision without phase-wrapping, ensuring robust convergence.
-      </p>
-    </div>
-  </div> 
-  <div class="method-figure">
-    <img src="static/method_1d.png" alt="1D optimization analysis" />
-  </div>
-</section>
+    <section class="section">
+      <h2>Breaking the Locality Trap</h2>
+      <div style="max-width: 1250px; margin: 0 auto; text-align: justify;">
+        <p>
+          Standard photometric objectives implicitly rely on spatial overlap. As shown in the 1D analysis below, standard L2 gradients strictly vanish when pulses have no spatial overlap. <strong>SpectralSplats</strong> resolves this by supervising spectral moments through a principled frequency annealing schedule, ensuring robust convergence from any initialization.
+        </p>
+      </div>
+      <div class="method-figure"><img src="static/method_1d.png"></div>
+    </section>
+
+    <section class="section">
+      <h2>SC4D Tracking</h2>
+      <div class="ablation-master-grid">
+        <div class="dog-card">
+          <h3>SpiderMan</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><img src="static/sc4d/dancing_spiderman_deformed__pixel__shift0.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/dancing_spiderman_deformed__pixel__shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/dancing_spiderman_deformed__pixel__shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/dancing_spiderman_deformed__pixel__shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/dancing_spiderman_deformed__pixel__shift0_8.gif"></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><img src="static/sc4d/dancing_spiderman_deformed__ours__shift0.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/dancing_spiderman_deformed__ours__shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/dancing_spiderman_deformed__ours__shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/dancing_spiderman_deformed__ours__shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/dancing_spiderman_deformed__ours__shift0_8.gif"></div>
+          </div>
+        </div>
+        <div class="dog-card">
+          <h3>IronMan</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__pixel__shift0.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__pixel__shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__pixel__shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__pixel__shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__pixel__shift0_8.gif"></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__ours__shift0.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__ours__shift0_2.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__ours__shift0_4.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__ours__shift0_6.gif"></div>
+            <div class="grid-item"><img src="static/sc4d/flying_ironman_deformed_rotated__ours__shift0_8.gif"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>GART (Dog Show) Tracking</h2>
+      <div class="ablation-master-grid">
+        <div class="dog-card">
+          <h3>Shiba</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/pixel_step_final.mp4"></video></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/spectral_step_final.mp4"></video></div>
+          </div>
+        </div>
+        <div class="dog-card">
+          <h3>French</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/pixel_step_final.mp4"></video></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/spectral_step_final.mp4"></video></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="section" id="citation">
       <h2>Citation</h2>
