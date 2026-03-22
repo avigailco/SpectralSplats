@@ -18,7 +18,8 @@
       --card-bg: #ffffff;
       --accent: #1a73e8;
       --btn-bg: #202124; 
-      --maxw: 1300px; /* Adjusted to accommodate the wider 1250px sections */
+      /* Reduced max-width for better scale/breathing room */
+      --maxw: 1100px; 
     }
 
     * { box-sizing: border-box; }
@@ -29,33 +30,34 @@
       font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-size: 1.05rem; /* Maintained the "75% zoom" scale */
-      line-height: 1.5;
+      font-size: 1.1rem; /* Restored to comfortable baseline size */
+      line-height: 1.7; /* Increased line height for better spacing */
     }
 
     .container {
-      width: min(var(--maxw), calc(100% - 40px));
+      width: min(var(--maxw), calc(100% - 80px)); /* Increased horizontal padding */
       margin: 0 auto;
     }
 
     .hero { 
-      padding: 60px 0 40px; 
+      padding: 80px 0 50px; 
       text-align: center; 
     }
     
     .title {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      line-height: 1.1;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.15;
       font-weight: 700;
-      margin: 0 auto 20px;
-      max-width: 1000px;
+      margin: 0 auto 30px;
+      max-width: 900px;
       letter-spacing: -0.03em;
       color: #202124;
     }
 
+    /* --- AUTHOR & AFFILIATION STYLES --- */
     .authors { 
-      margin: 15px 0 8px; 
-      font-size: 1.3rem; 
+      margin: 20px 0 10px; 
+      font-size: 1.5rem; 
       font-weight: 400;
       color: #202124;
     }
@@ -64,41 +66,36 @@
     .authors a:hover { color: var(--accent); }
 
     .affiliations {
-      font-size: 1.1rem; 
+      font-size: 1.25rem; 
       color: var(--muted);
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
-    .affiliations span { margin: 0 10px; }
-    sup { font-size: 0.7em; margin-left: 1px; }
+    .affiliations span { margin: 0 15px; }
+    sup { font-size: 0.7em; margin-left: 1px; vertical-align: baseline; position: relative; top: -0.4em; }
 
-    /* --- WIDE SECTION STYLES (1250px) --- */
-    .wide-container {
-      max-width: 1250px; 
-      margin: 0 auto;
-    }
-
+    /* --- TEASER PANEL STYLES --- */
     .teaser-figure {
-      max-width: 1250px; 
-      margin: 0 auto 40px;
+      max-width: 1250px; /* Kept wide but constrained by parent margins */
+      margin: 0 auto 60px;
     }
 
     .teaser-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 15px;
+      gap: 15px;
+      margin-bottom: 25px;
     }
 
     .teaser-item { text-align: center; }
     .teaser-item span.label {
       display: block;
       font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 10px;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
       color: #202124;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
     }
 
     .media-container {
@@ -128,10 +125,10 @@
     .ours-crop { background-position: right center; }
 
     .caption.teaser-caption {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       max-width: 1250px;
       margin: 0 auto;
-      line-height: 1.5;
+      line-height: 1.6;
       text-align: justify;
     }
 
@@ -139,21 +136,21 @@
     .ablation-master-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 30px;
+      gap: 30px;
+      margin-top: 40px;
     }
 
     .dog-card {
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 20px;
+      padding: 25px;
       background: #fdfdfd;
     }
 
     .ablation-grid {
       display: grid;
-      grid-template-columns: 110px repeat(5, 1fr); 
-      gap: 8px;
+      grid-template-columns: 120px repeat(5, 1fr); 
+      gap: 10px;
       align-items: center;
       text-align: center;
     }
@@ -162,13 +159,13 @@
       font-weight: 700;
       font-size: 0.9rem;
       color: var(--muted);
-      padding-bottom: 8px;
+      padding-bottom: 10px;
     }
 
     .method-label {
       font-weight: 700;
       text-align: left;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--text);
     }
 
@@ -176,7 +173,7 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1.5px solid #eceff1;
       background: #fff;
     }
@@ -185,53 +182,54 @@
     .button-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       justify-content: center;
-      margin: 30px 0;
+      margin: 40px 0;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 10px 22px;
+      gap: 8px;
+      padding: 12px 26px;
       border-radius: 999px;
       background: var(--btn-bg);
       color: white;
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 1rem;
       text-decoration: none;
       transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
     .btn:hover { background: #3c4043; transform: translateY(-1px); }
 
-    .section { padding: 60px 0; border-top: 1px solid var(--border); }
+    .section { padding: 80px 0; border-top: 1px solid var(--border); }
 
     .section h2 {
-      text-align: center; font-size: 2.8rem; margin: 0 0 35px;
+      text-align: center; font-size: 3rem; margin: 0 0 50px;
       letter-spacing: -0.02em; font-weight: 700;
     }
 
     .experiment-description {
       max-width: 1250px;
-      margin: 0 auto 30px;
+      margin: 0 auto 50px;
       text-align: justify;
-      font-size: 1.1rem;
-      line-height: 1.5;
+      font-size: 1.15rem;
+      line-height: 1.7;
     }
 
-    .method-figure { max-width: 1250px !important; margin: 0 auto 40px; display: table; }
-    .method-figure img { width: 100%; border-radius: 15px; border: 1px solid var(--border); box-shadow: 0 8px 30px -10px rgba(0,0,0,0.1); }
+    .method-figure { max-width: 1250px !important; margin: 0 auto 50px; display: table; }
+    .method-figure img { width: 100%; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 10px 30px -15px rgba(0,0,0,0.15); }
 
     pre {
-      padding: 24px; border-radius: 15px; background: #202124; color: #e8eaed; font-size: 0.95rem; overflow-x: auto;
+      padding: 30px; border-radius: 20px; background: #202124; color: #e8eaed; font-size: 1rem; overflow-x: auto;
     }
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1100px) {
       .ablation-master-grid { grid-template-columns: 1fr; }
-      .teaser-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
-      .title { font-size: 2.5rem; }
+      .teaser-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .title { font-size: 2.8rem; }
     }
   </style>
 </head>
@@ -293,32 +291,32 @@
           </div>
         </div>
         <div class="caption teaser-caption">
-          Starting from a <strong>Source</strong> and a spatially distant <strong>Target</strong> with zero initial overlap, <strong>SpectralSplats (OURS)</strong> enables robust tracking by shifting supervision from the spatial domain to spectral moments, whereas standard pixel-only optimization (<strong>PIXEL</strong>) fails to converge.
+          Starting from a <strong>Source</strong> and a spatially distant <strong>Target</strong> with zero initial overlap, <strong>SpectralSplats (OURS)</strong> enables robust tracking by shifting supervision from the spatial domain to spectral moments, whereas standard **Pixel**-only optimization (<strong>PIXEL</strong>) fails to converge.
         </div>
       </div>
     </section>
 
     <section class="section">
       <h2>Abstract</h2>
-      <div style="max-width: 900px; margin: 0 auto; text-align: justify;">
+      <div style="max-width: 850px; margin: 0 auto; text-align: justify;">
         <p>
-          3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce SpectralSplats, a robust tracking framework that resolves this ``vanishing gradient'' problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that SpectralSplats acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
+          3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that <strong>SpectralSplats</strong> acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
         </p>
       </div>
     </section>
 
     <section class="section">
       <h2>Breaking the Locality Trap</h2>
-      <div class="wide-container" style="text-align: justify;">
+      <div class="experiment-description">
         <p>
-          Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard L2 gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap". While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
+          Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard $L_2$ gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap". While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
         </p>
         <p>
-          <strong>SpectralSplats</strong> resolves this by supervising spectral moments through a principled frequency annealing schedule. By restricting initial supervision to low frequencies, we construct a globally convex basin of attraction that provides a valid, directional gradient from any initialization. As the spatial error decreases, our schedule seamlessly expands the active bandwidth to achieve high-frequency spatial precision without phase-wrapping, ensuring robust convergence.
+          <strong>SpectralSplats (Ours)</strong> resolves this by supervising spectral moments through a principled frequency annealing schedule. By restricting initial supervision to low frequencies, we construct a globally convex basin of attraction that provides a valid, directional gradient from any initialization. As the spatial error decreases, our schedule seamlessly expands the active bandwidth to achieve high-frequency spatial precision without phase-wrapping, ensuring robust convergence.
         </p>
       </div>
       <div class="method-figure">
-        <img src="static/method_1d.png" alt="1D optimization analysis">
+        <img src="static/method_1d.png" alt="1D optimization analysis comparing L2 loss, static spectral loss, and our annealed spectral supervision.">
       </div>
     </section>
 
@@ -328,7 +326,7 @@
         We evaluate robustness to initial alignment by shifting the initial 3DGS model in random directions with increasing radii, progressively reducing the spatial overlap between the rendering and target supervision. We conduct experiments on the controlled SC4D animations and the challenging, real-world GART Dog dataset, which exhibits noticeable deviations in pose and appearance between the model and supervision even at zero displacement due to inherent reconstruction challenges. We observe that **Pixel** loss fails to recover the correct pose as the shift increases, often drifting the asset out of frame. In contrast, **SpectralSplats (Ours)** remains stable and maintains a coherent structure across all displacement levels.
       </div>
 
-      <h3 style="text-align: center; margin: 40px 0 20px;">SC4D Tracking</h3>
+      <h3 style="text-align: center; margin: 40px 0 25px;">SC4D Tracking</h3>
       <div class="ablation-master-grid">
         <div class="dog-card">
           <h3>SpiderMan</h3>
@@ -404,7 +402,7 @@
         </div>
       </div>
 
-      <h3 style="text-align: center; margin: 60px 0 20px;">GART (Dog Show) Tracking</h3>
+      <h3 style="text-align: center; margin: 60px 0 25px;">GART (Dog Show) Tracking</h3>
       <div class="ablation-master-grid">
         <div class="dog-card">
           <h3>Shiba</h3>
