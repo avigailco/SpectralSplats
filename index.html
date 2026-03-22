@@ -18,8 +18,7 @@
       --card-bg: #ffffff;
       --accent: #1a73e8;
       --btn-bg: #202124; 
-      /* Reduced max-width for better scale/breathing room */
-      --maxw: 1100px; 
+      --maxw: 1300px; 
     }
 
     * { box-sizing: border-box; }
@@ -30,12 +29,12 @@
       font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-size: 1.1rem; /* Restored to comfortable baseline size */
-      line-height: 1.7; /* Increased line height for better spacing */
+      font-size: 1.1rem; 
+      line-height: 1.7;
     }
 
     .container {
-      width: min(var(--maxw), calc(100% - 80px)); /* Increased horizontal padding */
+      width: min(var(--maxw), calc(100% - 80px));
       margin: 0 auto;
     }
 
@@ -76,7 +75,7 @@
 
     /* --- TEASER PANEL STYLES --- */
     .teaser-figure {
-      max-width: 1250px; /* Kept wide but constrained by parent margins */
+      max-width: 1250px; 
       margin: 0 auto 60px;
     }
 
@@ -191,7 +190,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 26px;
+      padding: 12px 28px;
       border-radius: 999px;
       background: var(--btn-bg);
       color: white;
@@ -209,6 +208,15 @@
     .section h2 {
       text-align: center; font-size: 3rem; margin: 0 0 50px;
       letter-spacing: -0.02em; font-weight: 700;
+    }
+
+    /* Increased Tracking Results Titles Font Size */
+    .tracking-section-title {
+      text-align: center; 
+      font-size: 2.6rem; /* Increased slightly */
+      margin: 60px 0 30px;
+      font-weight: 700;
+      color: #202124;
     }
 
     .experiment-description {
@@ -267,31 +275,23 @@
         <div class="teaser-grid">
           <div class="teaser-item">
             <span class="label">SOURCE</span>
-            <div class="media-container">
-              <div class="panel-bg" style="background-image: url('static/teaser_fig/source.png');"></div>
-            </div>
+            <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/source.png');"></div></div>
           </div>
           <div class="teaser-item">
             <span class="label">TARGET</span>
-            <div class="media-container">
-              <div class="panel-bg" style="background-image: url('static/teaser_fig/target.png');"></div>
-            </div>
+            <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/target.png');"></div></div>
           </div>
           <div class="teaser-item">
             <span class="label">PIXEL</span>
-            <div class="media-container">
-              <div class="panel-bg gif-bg pixel-crop"></div>
-            </div>
+            <div class="media-container"><div class="panel-bg gif-bg pixel-crop"></div></div>
           </div>
           <div class="teaser-item">
             <span class="label">OURS</span>
-            <div class="media-container">
-              <div class="panel-bg gif-bg ours-crop"></div>
-            </div>
+            <div class="media-container"><div class="panel-bg gif-bg ours-crop"></div></div>
           </div>
         </div>
         <div class="caption teaser-caption">
-          Starting from a <strong>Source</strong> and a spatially distant <strong>Target</strong> with zero initial overlap, <strong>SpectralSplats (OURS)</strong> enables robust tracking by shifting supervision from the spatial domain to spectral moments, whereas standard **Pixel**-only optimization (<strong>PIXEL</strong>) fails to converge.
+          Starting from a <strong>Source</strong> and a spatially distant <strong>Target</strong> with zero initial overlap, <strong>SpectralSplats (OURS)</strong> enables robust tracking by shifting supervision from the spatial domain to spectral moments, whereas standard <strong>Pixel</strong>-only optimization (<strong>PIXEL</strong>) fails to converge.
         </div>
       </div>
     </section>
@@ -309,24 +309,24 @@
       <h2>Breaking the Locality Trap</h2>
       <div class="experiment-description">
         <p>
-          Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard $L_2$ gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap". While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
+          Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard L2 gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap". While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
         </p>
         <p>
           <strong>SpectralSplats (Ours)</strong> resolves this by supervising spectral moments through a principled frequency annealing schedule. By restricting initial supervision to low frequencies, we construct a globally convex basin of attraction that provides a valid, directional gradient from any initialization. As the spatial error decreases, our schedule seamlessly expands the active bandwidth to achieve high-frequency spatial precision without phase-wrapping, ensuring robust convergence.
         </p>
       </div>
       <div class="method-figure">
-        <img src="static/method_1d.png" alt="1D optimization analysis comparing L2 loss, static spectral loss, and our annealed spectral supervision.">
+        <img src="static/method_1d.png" alt="1D optimization analysis">
       </div>
     </section>
 
     <section class="section">
       <h2>Experimental Results</h2>
       <div class="experiment-description">
-        We evaluate robustness to initial alignment by shifting the initial 3DGS model in random directions with increasing radii, progressively reducing the spatial overlap between the rendering and target supervision. We conduct experiments on the controlled SC4D animations and the challenging, real-world GART Dog dataset, which exhibits noticeable deviations in pose and appearance between the model and supervision even at zero displacement due to inherent reconstruction challenges. We observe that **Pixel** loss fails to recover the correct pose as the shift increases, often drifting the asset out of frame. In contrast, **SpectralSplats (Ours)** remains stable and maintains a coherent structure across all displacement levels.
+        We evaluate robustness to initial alignment by shifting the initial 3DGS model in random directions with increasing radii, progressively reducing the spatial overlap between the rendering and target supervision. We conduct experiments on the controlled SC4D animations and the challenging, real-world GART Dog dataset, which exhibits noticeable deviations in pose and appearance between the model and supervision even at zero displacement due to inherent reconstruction challenges. We observe that <strong>Pixel</strong> loss fails to recover the correct pose as the shift increases, often drifting the asset out of frame. In contrast, <strong>SpectralSplats (Ours)</strong> remains stable and maintains a coherent structure across all displacement levels.
       </div>
 
-      <h3 style="text-align: center; margin: 40px 0 25px;">SC4D Tracking</h3>
+      <h3 class="tracking-section-title">SC4D Tracking</h3>
       <div class="ablation-master-grid">
         <div class="dog-card">
           <h3>SpiderMan</h3>
@@ -402,7 +402,7 @@
         </div>
       </div>
 
-      <h3 style="text-align: center; margin: 60px 0 25px;">GART (Dog Show) Tracking</h3>
+      <h3 class="tracking-section-title">GART (Dog Show) Tracking</h3>
       <div class="ablation-master-grid">
         <div class="dog-card">
           <h3>Shiba</h3>
@@ -490,7 +490,7 @@
   </main>
 
   <footer>
-    <div class="container" style="padding: 60px 0; text-align: center; color: var(--muted); border-top: 1px solid var(--border);">
+    <div class="container" style="padding: 100px 0; text-align: center; color: var(--muted); border-top: 1px solid var(--border);">
       &copy; 2026 SpectralSplats.
     </div>
   </footer>
