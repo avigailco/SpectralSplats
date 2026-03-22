@@ -135,10 +135,10 @@
       text-align: left;
     }
 
-    /* --- TEASER GRID STYLES --- */
+    /* --- TEASER PANEL STYLES --- */
     
     .teaser-figure {
-      max-width: 1000px; /* Matches Abstract width */
+      max-width: 1250px; /* Matched to 'Locality Trap' section */
       margin: 0 auto 48px;
     }
 
@@ -157,13 +157,13 @@
       display: block;
       font-weight: 700;
       font-size: 1.3rem;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
       color: #202124;
+      letter-spacing: 0.05em;
     }
 
-    /* Ensuring all images/gifs have the exact same height */
     .media-container {
-      height: 300px; /* Fixed height for consistency */
+      height: 380px; /* Adjusted height for wider panels */
       width: 100%;
       overflow: hidden;
       border-radius: 15px;
@@ -175,24 +175,29 @@
     .media-container img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; /* Centers Source and Target automatically */
       border: none !important;
       box-shadow: none !important;
       border-radius: 0 !important;
     }
 
-    /* Splitting the single teaser_gif.gif into two panels */
+    /* Precise cropping for the 2-in-1 GIF */
     .gif-side img {
-      width: 200%; /* Since it has 2 panels */
+      width: 200%; 
       max-width: none;
     }
 
-    .pixel-panel img { object-position: left; }
-    .ours-panel img { object-position: right; }
+    .pixel-panel img { 
+      object-position: left center; /* Shows exact left half */
+    }
+    
+    .ours-panel img { 
+      object-position: right center; /* Shows exact right half */
+    }
 
     .caption.teaser-caption {
       font-size: 1.5rem;
-      max-width: 1000px;
+      max-width: 1250px; /* Matched width */
       margin: 0 auto;
     }
 
@@ -265,9 +270,9 @@
       border-top: 1px solid var(--border);
     }
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1100px) {
       .teaser-grid { grid-template-columns: 1fr 1fr; }
-      .media-container { height: 200px; }
+      .media-container { height: 280px; }
       .ablation-master-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -357,10 +362,19 @@
   </div>
 </section>
 
-    <section class="section">
-      <h2>SC4D Tracking</h2>
-      </section>
+    <section class="section" id="citation">
+      <h2>Citation</h2>
+      <pre>@inproceedings{spectralsplats2026,
+  title={SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision},
+  author={Cohen Rimon, Avigail and Mann, Amir and Ben Chen, Mirela and Litany, Or},
+  year={2026}
+}</pre>
+    </section>
+  </main>
 
-    </main>
+  <footer>
+    <div class="container">&copy; 2026 SpectralSplats.</div>
+  </footer>
+
 </body>
 </html>
