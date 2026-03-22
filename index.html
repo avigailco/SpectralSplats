@@ -18,7 +18,7 @@
       --card-bg: #ffffff;
       --accent: #1a73e8;
       --btn-bg: #202124; 
-      --maxw: 1200px; /* Reduced for better scale */
+      --maxw: 1300px; /* Adjusted to accommodate the wider 1250px sections */
     }
 
     * { box-sizing: border-box; }
@@ -29,7 +29,7 @@
       font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-size: 1.05rem; /* Reduced from 1.4rem to match your 75% zoom preference */
+      font-size: 1.05rem; /* Maintained the "75% zoom" scale */
       line-height: 1.5;
     }
 
@@ -44,7 +44,7 @@
     }
     
     .title {
-      font-size: clamp(2.2rem, 5vw, 3.8rem); /* Scaled down */
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
       line-height: 1.1;
       font-weight: 700;
       margin: 0 auto 20px;
@@ -72,9 +72,14 @@
     .affiliations span { margin: 0 10px; }
     sup { font-size: 0.7em; margin-left: 1px; }
 
-    /* --- TEASER PANEL STYLES --- */
+    /* --- WIDE SECTION STYLES (1250px) --- */
+    .wide-container {
+      max-width: 1250px; 
+      margin: 0 auto;
+    }
+
     .teaser-figure {
-      max-width: 1100px; /* Wider than text but scaled down for better viewing */
+      max-width: 1250px; 
       margin: 0 auto 40px;
     }
 
@@ -124,7 +129,7 @@
 
     .caption.teaser-caption {
       font-size: 1.15rem;
-      max-width: 1100px;
+      max-width: 1250px;
       margin: 0 auto;
       line-height: 1.5;
       text-align: justify;
@@ -209,14 +214,14 @@
     }
 
     .experiment-description {
-      max-width: 1100px;
+      max-width: 1250px;
       margin: 0 auto 30px;
       text-align: justify;
       font-size: 1.1rem;
       line-height: 1.5;
     }
 
-    .method-figure { max-width: 1100px !important; margin: 0 auto 40px; display: table; }
+    .method-figure { max-width: 1250px !important; margin: 0 auto 40px; display: table; }
     .method-figure img { width: 100%; border-radius: 15px; border: 1px solid var(--border); box-shadow: 0 8px 30px -10px rgba(0,0,0,0.1); }
 
     pre {
@@ -304,7 +309,7 @@
 
     <section class="section">
       <h2>Breaking the Locality Trap</h2>
-      <div style="max-width: 900px; margin: 0 auto; text-align: justify;">
+      <div class="wide-container" style="text-align: justify;">
         <p>
           Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard L2 gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap". While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
         </p>
