@@ -303,7 +303,7 @@
       <h2>Breaking the Locality Trap</h2>
       <div class="experiment-description">
         <p>
-          Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard $L_2$ gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap". While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
+          Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard L2 gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap". While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
         </p>
         <p>
           <strong>SpectralSplats (Ours)</strong> resolves this by supervising spectral moments through a principled frequency annealing schedule. By restricting initial supervision to low frequencies, we construct a globally convex basin of attraction that provides a valid, directional gradient from any initialization. As the spatial error decreases, our schedule seamlessly expands the active bandwidth to achieve high-frequency spatial precision without phase-wrapping, ensuring robust convergence.
@@ -397,10 +397,10 @@
       </div>
 
       <div class="method-figure" style="margin-top: 40px;">
-        <img src="static/sc4d_graphs.png" alt="SC4D shift experiment metrics for training and novel views">
-        <div class="caption teaser-caption" style="margin-top: 15px;">
+        <div class="caption teaser-caption" style="margin-bottom: 15px;">
           Metric evaluations (PSNR, SSIM, and LPIPS) for training views (top row) and novel side views (bottom row) across increasing shift radii.
         </div>
+        <img src="static/sc4d_graphs.png" alt="SC4D shift experiment metrics for training and novel views">
       </div>
 
       <h3 class="tracking-section-title">GART (Dog Show) Tracking</h3>
@@ -477,6 +477,13 @@
             <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/spectral_step_final.mp4"></video></div>
           </div>
         </div>
+      </div>
+
+      <div class="method-figure" style="margin-top: 40px;">
+        <div class="caption teaser-caption" style="margin-bottom: 15px;">
+          Metric evaluations (PSNR, SSIM, and LPIPS) for training views (top row) and novel side views (bottom row) across increasing shift radii.
+        </div>
+        <img src="static/gart_graphs.png" alt="GART shift experiment metrics for training and novel views">
       </div>
     </section>
 
