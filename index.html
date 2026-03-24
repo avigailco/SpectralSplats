@@ -165,18 +165,16 @@
       color: var(--text);
     }
 
-    /* Vertical label support for featured summary card */
     .vertical-label {
       writing-mode: vertical-rl;
       transform: rotate(180deg);
-      font-size: 0.65rem; /* Reduced from 0.8rem as requested */
-      /* Remove capitalization and uppercase spacing rules */
+      font-size: 0.75rem; /* Increased from 0.65rem */
       white-space: nowrap;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100%;
-      letter-spacing: 0.02em; /* Smaller spacing for smaller lowercase text */
+      letter-spacing: 0.02em;
     }
 
     .grid-item img, .grid-item video {
@@ -364,7 +362,7 @@
         <div class="ablation-grid" style="grid-template-columns: 50px repeat(5, 1fr);">
           <div></div>
           <div class="misalignment-arrow-container">
-            <span style="font-size: 0.98rem; font-weight: 750; color: var(--muted);">Level of misalignment</span>
+            <span style="font-size: 0.9rem; font-weight: 700; color: var(--muted);">Level of misalignment</span>
             <div class="arrow-line"><div class="arrow-head"></div></div>
           </div>
           
