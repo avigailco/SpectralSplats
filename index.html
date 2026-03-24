@@ -160,9 +160,23 @@
 
     .method-label {
       font-weight: 700;
-      text-align: center; /* Changed from left to center as requested */
+      text-align: center; 
       font-size: 0.9rem;
       color: var(--text);
+    }
+
+    /* Vertical label support for featured summary card */
+    .vertical-label {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
     }
 
     .grid-item img, .grid-item video {
@@ -346,22 +360,22 @@
         We evaluate robustness to initial alignment by shifting the initial 3DGS model in random directions with increasing radii, progressively reducing the spatial overlap between the rendering and target supervision. We conduct experiments on the controlled SC4D animations and the challenging, real-world GART Dog dataset, which exhibits noticeable deviations in pose and appearance between the model and supervision even at zero displacement due to inherent reconstruction challenges. We observe that <strong>Pixel</strong> loss fails to recover the correct pose as the shift increases, often drifting the asset out of frame. In contrast, <strong>SpectralSplats (Ours)</strong> remains stable and maintains a coherent structure across all displacement levels. These observations are further reflected in our quantitative evaluations of PSNR, SSIM, and LPIPS metrics for both training and novel views.
       </div>
 
-      <div class="dog-card" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto 50px;">
-        <div class="ablation-grid" style="grid-template-columns: 180px repeat(5, 1fr);">
+      <div class="dog-card" style="grid-column: 1 / -1; max-width: 850px; margin: 0 auto 50px;">
+        <div class="ablation-grid" style="grid-template-columns: 50px repeat(5, 1fr);">
           <div></div>
           <div class="misalignment-arrow-container">
             <span style="font-size: 0.9rem; font-weight: 700; color: var(--muted);">Level of misalignment</span>
             <div class="arrow-line"><div class="arrow-head"></div></div>
           </div>
           
-          <div class="method-label">Appearance-based loss</div>
+          <div class="method-label vertical-label">Appearance-based loss</div>
           <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4"></video></div>
           <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4"></video></div>
           <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/pixel_step_final.mp4"></video></div>
           <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/pixel_step_final.mp4"></video></div>
           <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/pixel_step_final.mp4"></video></div>
           
-          <div class="method-label">SpectralSplats (ours)</div>
+          <div class="method-label vertical-label">SpectralSplats (ours)</div>
           <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/spectral_step_final.mp4"></video></div>
           <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/spectral_step_final.mp4"></video></div>
           <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/spectral_step_final.mp4"></video></div>
