@@ -174,30 +174,35 @@
       background: #fff;
     }
 
-    .misalignment-arrow-container {
-      grid-column: span 5;
-      position: relative;
-      margin-bottom: 15px;
+    /* Teaser layout updates for incorporation */
+    .teaser-main-flex {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
+      gap: 30px;
+      margin-bottom: 25px;
     }
-    .arrow-line {
-      width: 100%;
-      height: 2px;
-      background: var(--muted);
-      position: relative;
-      margin-top: 5px;
+
+    .teaser-scene-visualization {
+      flex: 2; /* Visualization at ~40% width */
+      margin-bottom: 0;
     }
-    .arrow-head {
-      position: absolute;
-      right: 0;
-      top: -4px;
-      width: 10px;
-      height: 10px;
-      border-top: 2px solid var(--muted);
-      border-right: 2px solid var(--muted);
-      transform: rotate(45deg);
+
+    .teaser-tracking-comparison-grid {
+      flex: 3; /* Tracking grid at ~60% width */
+      margin-bottom: 0;
+    }
+
+    /* Compact 2x2 grid for right panel, using explicit rows to specify ordering */
+    .teaser-figure .teaser-grid.teaser-tracking-compact {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 15px;
+    }
+
+    /* Aspect ratio for the wide scene setup image frame */
+    .media-container.scene-setup-media {
+      aspect-ratio: 16 / 9; /* Wide aspect ratio for visualization */
     }
 
     .button-row {
@@ -257,6 +262,7 @@
     @media (max-width: 1100px) {
       .ablation-master-grid { grid-template-columns: 1fr; }
       .teaser-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .teaser-main-flex { flex-direction: column; } /* Stack vertically on small screens */
       .title { font-size: 2.6rem; }
     }
   </style>
@@ -291,47 +297,34 @@
   <main class="container">
     
     <section class="section" style="border-top:none; padding-top: 0;">
-      <div class="figure-block teaser-figure" style="display: flex; flex-direction: row; gap: 30px; justify-content: space-between; align-items: stretch;">
+      <div class="figure-block teaser-figure">
         
-        <div class="dog-card teaser-figure-item conceptual-card" style="flex: 1; padding: 30px;">
-          <h3 style="text-align: center; font-size: 1.6rem; margin-top: 0; margin-bottom: 25px;">Breaking the Locality Trap</h3>
-          
-          <div class="media-container" style="box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-            <div class="panel-bg" style="background-image: url('fruits.png'); aspect-ratio: 1/1.1; background-size: cover;"></div>
+        <div class="teaser-main-flex"> <div class="teaser-scene-visualization teaser-item">
+            <span class="label">SCENE SETUP</span>
+            <div class="media-container scene-setup-media"><div class="panel-bg" style="background-image: url('static/tease_fig/fruits.png');"></div></div>
           </div>
           
-          <p class="caption teaser-caption" style="text-align: justify; font-size: 1.05rem; margin-top: 20px; line-height: 1.6;">
-            visualization of how **Spectral Moments** construct a global basin of attraction across the entire image. Standard spatial-only supervision from local supports of Gaussian primitives (illustrated by colorful traps on the object) strictly vanishes under severe spatial shift, leaving the optimizer stranded in **LOCAL** traps.
-          </p>
-        </div>
-        
-        <div class="teaser-figure-item figure-block" style="flex: 1.6;">
-          <h3 style="text-align:center; font-size: 1.6rem; margin-top: 15px; margin-bottom: 25px;">Robust Spatial Alignment</h3>
-          
-          <div class="teaser-grid" style="grid-template-columns: repeat(4, 1fr);">
-            <div class="teaser-item">
+          <div class="teaser-tracking-comparison-grid teaser-grid teaser-tracking-compact"> <div class="teaser-item">
               <span class="label">SOURCE</span>
-              <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/source.png'); aspect-ratio: 1/1.1;"></div></div>
+              <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/source.png');"></div></div>
             </div>
             <div class="teaser-item">
               <span class="label">TARGET</span>
-              <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/target.png'); aspect-ratio: 1/1.1;"></div></div>
+              <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/target.png');"></div></div>
             </div>
             <div class="teaser-item">
               <span class="label">PIXEL</span>
-              <div class="media-container"><div class="panel-bg gif-bg pixel-crop" style="aspect-ratio: 1/1.1;"></div></div>
+              <div class="media-container"><div class="panel-bg gif-bg pixel-crop"></div></div>
             </div>
             <div class="teaser-item">
               <span class="label">OURS</span>
-              <div class="media-container"><div class="panel-bg gif-bg ours-crop" style="aspect-ratio: 1/1.1;"></div></div>
+              <div class="media-container"><div class="panel-bg gif-bg ours-crop"></div></div>
             </div>
           </div>
           
-          <p class="caption teaser-caption" style="text-align: center; font-size: 1.05rem; margin-top: 25px; line-height: 1.6;">
-            Demonstration on complex deformation with extreme spatial shifts: **SpectralSplats (OURS)** achieves robust convergence from severely misaligned initialization, whereas pixel-only optimization (<strong>PIXEL</strong>) catastrophically fails.
-          </p>
+        </div> <div class="caption teaser-caption" style="text-align: justify; margin-top: 30px;">
+          Starting from a <strong>SOURCE</strong> and a spatially distant <strong>TARGET</strong> with zero initial overlap, <strong>SpectralSplats (OURS)</strong> enables robust tracking by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (<strong>PIXEL</strong>) fails to converge.
         </div>
-        
       </div>
     </section>
 
@@ -363,30 +356,6 @@
       <h2>Experimental Results</h2>
       <div class="experiment-description">
         We evaluate robustness to initial alignment by shifting the initial 3DGS model in random directions with increasing radii, progressively reducing the spatial overlap between the rendering and target supervision. We conduct experiments on the controlled SC4D animations and the challenging, real-world GART Dog dataset, which exhibits noticeable deviations in pose and appearance between the model and supervision even at zero displacement due to inherent reconstruction challenges. We observe that <strong>Pixel</strong> loss fails to recover the correct pose as the shift increases, often drifting the asset out of frame. In contrast, <strong>SpectralSplats (Ours)</strong> remains stable and maintains a coherent structure across all displacement levels. These observations are further reflected in our quantitative evaluations of PSNR, SSIM, and LPIPS metrics for both training and novel views.
-      </div>
-
-      <div class="dog-card" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto 50px;">
-        <div class="ablation-grid" style="grid-template-columns: 180px repeat(5, 1fr);">
-          <div></div>
-          <div class="misalignment-arrow-container">
-            <span style="font-size: 0.9rem; font-weight: 700; color: var(--muted);">Level of misalignment</span>
-            <div class="arrow-line"><div class="arrow-head"></div></div>
-          </div>
-          
-          <div class="method-label">Appearance-based loss</div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/pixel_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/pixel_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/pixel_step_final.mp4"></video></div>
-          
-          <div class="method-label">SpectralSplats (ours)</div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/spectral_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/spectral_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/spectral_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/spectral_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/spectral_step_final.mp4"></video></div>
-        </div>
       </div>
 
       <h3 class="tracking-section-title">SC4D Tracking</h3>
@@ -461,6 +430,89 @@
             <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__ours__shift0_4.gif"></div>
             <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__ours__shift0_6.gif"></div>
             <div class="grid-item"><img src="static/sc4d/walking_aurorus_deformed__ours__shift0_8.gif"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-figure" style="margin-top: 40px;">
+        <div class="caption teaser-caption" style="margin-bottom: 15px;">
+          Metric evaluations (PSNR, SSIM, and LPIPS) for training views (top row) and novel side views (bottom row) across the increasing shift radii.
+        </div>
+        <img src="static/sc4d_graphs.png" alt="SC4D shift experiment metrics for training and novel views">
+      </div>
+
+      <h3 class="tracking-section-title">GART (Dog Show) Tracking</h3>
+      <div class="ablation-master-grid">
+        <div class="dog-card">
+          <h3>Shiba</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/pixel_step_final.mp4"></video></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.0/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.2/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.4/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.6/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/shiba/0.8/spectral_step_final.mp4"></video></div>
+          </div>
+        </div>
+        <div class="dog-card">
+          <h3>French</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/pixel_step_final.mp4"></video></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.0/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.2/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.4/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.6/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/french/0.8/spectral_step_final.mp4"></video></div>
+          </div>
+        </div>
+        <div class="dog-card">
+          <h3>English</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/pixel_step_final.mp4"></video></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.0/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.2/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.4/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.6/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/english/0.8/spectral_step_final.mp4"></video></div>
+          </div>
+        </div>
+        <div class="dog-card">
+          <h3>Hound</h3>
+          <div class="ablation-grid">
+            <div></div><div class="grid-header">0.0</div><div class="grid-header">0.2</div><div class="grid-header">0.4</div><div class="grid-header">0.6</div><div class="grid-header">0.8</div>
+            <div class="method-label">Pixel</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/pixel_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/pixel_step_final.mp4"></video></div>
+            <div class="method-label">Ours</div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/spectral_step_final.mp4"></video></div>
+            <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/spectral_step_final.mp4"></video></div>
           </div>
         </div>
       </div>
