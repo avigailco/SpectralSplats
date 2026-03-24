@@ -126,7 +126,7 @@
       width: 100%;
       margin: 0 auto;
       line-height: 1.6;
-      text-align: justify;
+      text-align: center; /* Centered as requested */
     }
 
     .ablation-master-grid {
@@ -242,8 +242,8 @@
       <h1 class="title">SpectralSplats: Robust Differentiable Tracking via Spectral Moment Supervision</h1>
       
       <div class="authors">
-        Avigail Cohen Rimon<sup>1</sup>, &nbsp;
-        Amir Mann<sup>1</sup>, &nbsp;
+        <a href="https://www.linkedin.com/in/avigail-cohen-rimon/" target="_blank">Avigail Cohen Rimon</a><sup>1</sup>, &nbsp;
+        <a href="https://www.linkedin.com/in/amir-mann-research/" target="_blank">Amir Mann</a><sup>1</sup>, &nbsp;
         <a href="https://mirela.net.technion.ac.il/" target="_blank">Mirela Ben Chen</a><sup>1</sup>, &nbsp;
         <a href="https://orlitany.github.io/" target="_blank">Or Litany</a><sup>1, 2</sup>
       </div>
@@ -284,7 +284,7 @@
             <div class="media-container"><div class="panel-bg gif-bg ours-crop"></div></div>
           </div>
         </div>
-        <div class="caption teaser-caption">
+        <div class="caption teaser-caption" style="text-align: justify;">
           Starting from a <strong>SOURCE</strong> and a spatially distant <strong>TARGET</strong> with zero initial overlap, <strong>SpectralSplats (OURS)</strong> enables robust tracking by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (<strong>PIXEL</strong>) fails to converge.
         </div>
       </div>
@@ -294,7 +294,7 @@
       <h2>Abstract</h2>
       <div style="max-width: 800px; margin: 0 auto; text-align: justify;">
         <p>
-          3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that SpectralSplats acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
+          3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that <strong>SpectralSplats</strong> acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
         </p>
       </div>
     </section>
