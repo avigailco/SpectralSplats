@@ -126,7 +126,7 @@
       width: 100%;
       margin: 0 auto;
       line-height: 1.6;
-      text-align: center; 
+      text-align: center; /* Centered as requested */
     }
 
     .ablation-master-grid {
@@ -151,6 +151,33 @@
       text-align: center;
     }
 
+    /* Style for the vertical text takeaway card */
+    .annotated-hound-takeaway .ablation-grid {
+      grid-template-columns: 40px repeat(5, 1fr); /* Narrow first column for vertical text */
+      gap: 10px; /* Adjust gap to keep it sleek */
+    }
+
+    .annotated-hound-takeaway .method-label {
+      writing-mode: vertical-lr; /* Vertical text from top to bottom */
+      text-orientation: mixed; /* Maintain letter orientation */
+      white-space: nowrap; /* Prevent word wrap */
+      height: 100%; /* Take full height of grid row */
+      text-align: center; /* Center horizontally in its column */
+      width: 100%; /* Fill cell width */
+      display: flex; /* Flex to center vertically and horizontally in cell */
+      justify-content: center; /* Center horizontally in narrow width */
+      align-items: center; /* Center vertically across row height */
+      transform: scale(-1); /* Rotate 180deg to make text read from left-to-right top-to-bottom if LR reads right-to-left */
+    }
+    
+    /* Center the Misalignment arrow across its spans */
+    .annotated-hound-takeaway .grid-item.arrow-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-column: span 5; /* Arrow spans across image columns */
+    }
+
     .grid-header {
       font-weight: 700;
       font-size: 0.85rem;
@@ -160,7 +187,7 @@
 
     .method-label {
       font-weight: 700;
-      text-align: center; 
+      text-align: center; /* Center detailed grid labels */
       font-size: 0.9rem;
       color: var(--text);
     }
@@ -172,37 +199,6 @@
       border-radius: 8px;
       border: 1.5px solid #eceff1;
       background: #fff;
-    }
-
-    /* Teaser layout updates for incorporation */
-    .teaser-main-flex {
-      display: flex;
-      align-items: flex-start;
-      gap: 30px;
-      margin-bottom: 25px;
-    }
-
-    .teaser-scene-visualization {
-      flex: 2; /* Visualization at ~40% width */
-      margin-bottom: 0;
-    }
-
-    .teaser-tracking-comparison-grid {
-      flex: 3; /* Tracking grid at ~60% width */
-      margin-bottom: 0;
-    }
-
-    /* Compact 2x2 grid for right panel, using explicit rows to specify ordering */
-    .teaser-figure .teaser-grid.teaser-tracking-compact {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, auto);
-      gap: 15px;
-    }
-
-    /* Aspect ratio for the wide scene setup image frame */
-    .media-container.scene-setup-media {
-      aspect-ratio: 16 / 9; /* Wide aspect ratio for visualization */
     }
 
     .button-row {
@@ -262,7 +258,6 @@
     @media (max-width: 1100px) {
       .ablation-master-grid { grid-template-columns: 1fr; }
       .teaser-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
-      .teaser-main-flex { flex-direction: column; } /* Stack vertically on small screens */
       .title { font-size: 2.6rem; }
     }
   </style>
@@ -298,31 +293,25 @@
     
     <section class="section" style="border-top:none; padding-top: 0;">
       <div class="figure-block teaser-figure">
-        
-        <div class="teaser-main-flex"> <div class="teaser-scene-visualization teaser-item">
-            <span class="label">SCENE SETUP</span>
-            <div class="media-container scene-setup-media"><div class="panel-bg" style="background-image: url('static/tease_fig/fruits.png');"></div></div>
+        <div class="teaser-grid">
+          <div class="teaser-item">
+            <span class="label">SOURCE</span>
+            <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/source.png');"></div></div>
           </div>
-          
-          <div class="teaser-tracking-comparison-grid teaser-grid teaser-tracking-compact"> <div class="teaser-item">
-              <span class="label">SOURCE</span>
-              <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/source.png');"></div></div>
-            </div>
-            <div class="teaser-item">
-              <span class="label">TARGET</span>
-              <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/target.png');"></div></div>
-            </div>
-            <div class="teaser-item">
-              <span class="label">PIXEL</span>
-              <div class="media-container"><div class="panel-bg gif-bg pixel-crop"></div></div>
-            </div>
-            <div class="teaser-item">
-              <span class="label">OURS</span>
-              <div class="media-container"><div class="panel-bg gif-bg ours-crop"></div></div>
-            </div>
+          <div class="teaser-item">
+            <span class="label">TARGET</span>
+            <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/target.png');"></div></div>
           </div>
-          
-        </div> <div class="caption teaser-caption" style="text-align: justify; margin-top: 30px;">
+          <div class="teaser-item">
+            <span class="label">PIXEL</span>
+            <div class="media-container"><div class="panel-bg gif-bg pixel-crop"></div></div>
+          </div>
+          <div class="teaser-item">
+            <span class="label">OURS</span>
+            <div class="media-container"><div class="panel-bg gif-bg ours-crop"></div></div>
+          </div>
+        </div>
+        <div class="caption teaser-caption" style="text-align: justify;">
           Starting from a <strong>SOURCE</strong> and a spatially distant <strong>TARGET</strong> with zero initial overlap, <strong>SpectralSplats (OURS)</strong> enables robust tracking by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (<strong>PIXEL</strong>) fails to converge.
         </div>
       </div>
@@ -341,7 +330,7 @@
       <h2>Breaking the Locality Trap</h2>
       <div class="experiment-description">
         <p>
-          Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard L2 gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap". While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
+          Standard photometric objectives implicitly rely on spatial overlap between rendered primitives and the target. As illustrated in the 1D optimization analysis below, standard $L_2$ gradients strictly vanish when pulses have no spatial overlap, leaving the optimizer stranded in a "locality trap". While static spectral supervision can provide a non-vanishing signal, high frequencies introduce severe phase-wrapping that creates false local minima. 
         </p>
         <p>
           <strong>SpectralSplats (Ours)</strong> resolves this by supervising spectral moments through a principled frequency annealing schedule. By restricting initial supervision to low frequencies, we construct a globally convex basin of attraction that provides a valid, directional gradient from any initialization. As the spatial error decreases, our schedule seamlessly expands the active bandwidth to achieve high-frequency spatial precision without phase-wrapping, ensuring robust convergence.
@@ -355,7 +344,35 @@
     <section class="section">
       <h2>Experimental Results</h2>
       <div class="experiment-description">
-        We evaluate robustness to initial alignment by shifting the initial 3DGS model in random directions with increasing radii, progressively reducing the spatial overlap between the rendering and target supervision. We conduct experiments on the controlled SC4D animations and the challenging, real-world GART Dog dataset, which exhibits noticeable deviations in pose and appearance between the model and supervision even at zero displacement due to inherent reconstruction challenges. We observe that <strong>Pixel</strong> loss fails to recover the correct pose as the shift increases, often drifting the asset out of frame. In contrast, <strong>SpectralSplats (Ours)</strong> remains stable and maintains a coherent structure across all displacement levels. These observations are further reflected in our quantitative evaluations of PSNR, SSIM, and LPIPS metrics for both training and novel views.
+        We evaluate robustness to initial alignment by shifting the initial 3DGS model in random directions with increasing radii, progressively reducing the spatial overlap between the rendering and target supervision. We conduct experiments on the controlled SC4D animations and the challenging, real-world GART Dog dataset, which exhibits noticeable deviations in pose and appearance between the model and supervision even at zero displacement due to inherent reconstruction challenges. We observe that **Pixel** loss fails to recover the correct pose as the shift increases, often drifting the asset out of frame. In contrast, **SpectralSplats (Ours)** remains stable and maintains a coherent structure across all displacement levels. These observations are further reflected in our quantitative evaluations of **PSNR**, **SSIM**, and **LPIPS** metrics for both training and novel views.
+      </div>
+
+      <div class="dog-card annotated-hound-takeaway" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto 50px;">
+        <div class="ablation-grid">
+          <div></div>
+          <div class="grid-item arrow-item">
+            <div class="实验-annotation-arrow">
+              <span style="font-size: 0.9rem; font-weight: 700; color: var(--muted);">Level of misalignment</span>
+              <div style="width: 250px; height: 2px; background: var(--muted); position: relative; margin-top: 5px; margin-left: 20px;">
+                <div style="position: absolute; right: 0; top: -4px; width: 10px; height: 10px; border-top: 2px solid var(--muted); border-right: 2px solid var(--muted); transform: rotate(45deg);"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="method-label">**Appearance-based loss**</div>
+          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4"></video></div>
+          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4"></video></div>
+          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/pixel_step_final.mp4"></video></div>
+          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/pixel_step_final.mp4"></video></div>
+          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/pixel_step_final.mp4"></video></div>
+          
+          <div class="method-label">**SpectralSplats (ours)**</div>
+          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/spectral_step_final.mp4"></video></div>
+          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/spectral_step_final.mp4"></video></div>
+          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/spectral_step_final.mp4"></video></div>
+          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/spectral_step_final.mp4"></video></div>
+          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/spectral_step_final.mp4"></video></div>
+        </div>
       </div>
 
       <h3 class="tracking-section-title">SC4D Tracking</h3>
