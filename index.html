@@ -79,7 +79,7 @@
 
     .teaser-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr); /* Updated to 5 columns for Scene Setup */
       gap: 15px;
       margin-bottom: 25px;
     }
@@ -88,7 +88,7 @@
     .teaser-item span.label {
       display: block;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.8rem; /* Slightly smaller to fit 5 labels comfortably */
       margin-bottom: 12px;
       color: #202124;
       text-transform: uppercase;
@@ -168,7 +168,7 @@
     .vertical-label {
       writing-mode: vertical-rl;
       transform: rotate(180deg);
-      font-size: 0.85rem; /* Increased from 0.65rem */
+      font-size: 0.85rem; 
       white-space: nowrap;
       display: flex;
       align-items: center;
@@ -268,7 +268,7 @@
 
     @media (max-width: 1100px) {
       .ablation-master-grid { grid-template-columns: 1fr; }
-      .teaser-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .teaser-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
       .title { font-size: 2.6rem; }
     }
   </style>
@@ -306,6 +306,10 @@
       <div class="figure-block teaser-figure">
         <div class="teaser-grid">
           <div class="teaser-item">
+            <span class="label">SCENE SETUP</span>
+            <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/fruits.png');"></div></div>
+          </div>
+          <div class="teaser-item">
             <span class="label">SOURCE</span>
             <div class="media-container"><div class="panel-bg" style="background-image: url('static/teaser_fig/source.png');"></div></div>
           </div>
@@ -322,7 +326,7 @@
             <div class="media-container"><div class="panel-bg gif-bg ours-crop"></div></div>
           </div>
         </div>
-        <div class="caption teaser-caption" style="text-align: justify;">
+        <div class="caption teaser-caption" style="text-align: justify; margin-top: 25px;">
           Starting from a <strong>SOURCE</strong> and a spatially distant <strong>TARGET</strong> with zero initial overlap, <strong>SpectralSplats (OURS)</strong> enables robust tracking by shifting supervision from the spatial domain to spectral moments, whereas pixel-only optimization (<strong>PIXEL</strong>) fails to converge.
         </div>
       </div>
