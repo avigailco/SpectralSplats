@@ -169,14 +169,14 @@
     .vertical-label {
       writing-mode: vertical-rl;
       transform: rotate(180deg);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-size: 0.65rem; /* Reduced from 0.8rem as requested */
+      /* Remove capitalization and uppercase spacing rules */
       white-space: nowrap;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100%;
+      letter-spacing: 0.02em; /* Smaller spacing for smaller lowercase text */
     }
 
     .grid-item img, .grid-item video {
