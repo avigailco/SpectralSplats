@@ -336,7 +336,7 @@
       <h2>Abstract</h2>
       <div style="max-width: 800px; margin: 0 auto; text-align: justify;">
         <p>
-          3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that <strong>SpectralSplats</strong> acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
+          3D Gaussian Splatting (3DGS) enables real-time, photorealistic novel view synthesis, making it a highly attractive representation for model-based video tracking. However, leveraging the differentiability of the 3DGS renderer "in the wild'" remains notoriously fragile. A fundamental bottleneck lies in the compact, local support of the Gaussian primitives. Standard photometric objectives implicitly rely on spatial overlap; if severe camera misalignment places the rendered object outside the target's local footprint, gradients strictly vanish, leaving the optimizer stranded. We introduce <strong>SpectralSplats</strong>, a robust tracking framework that resolves this "vanishing gradient" problem by shifting the optimization objective from the spatial to the frequency domain. By supervising the rendered image via a set of global complex sinusoidal features (Spectral Moments), we construct a global basin of attraction, ensuring that a valid, directional gradient toward the target exists across the entire image domain, even when pixel overlap is completely nonexistent. To harness this global basin without introducing periodic local minima associated with high frequencies, we derive a principled Frequency Annealing schedule from first principles, gracefully transitioning the optimizer from global convexity to precise spatial alignment. We demonstrate that SpectralSplats acts as a seamless, drop-in replacement for spatial losses across diverse deformation parameterizations (from MLPs to sparse control points), successfully recovering complex deformations even from severely misaligned initializations where standard appearance-based tracking catastrophically fails.
         </p>
       </div>
     </section>
@@ -360,30 +360,6 @@
       <h2>Experimental Results</h2>
       <div class="experiment-description">
         We evaluate robustness to initial alignment by shifting the initial 3DGS model in random directions with increasing radii, progressively reducing the spatial overlap between the rendering and target supervision. We conduct experiments on the controlled SC4D animations and the challenging, real-world GART Dog dataset, which exhibits noticeable deviations in pose and appearance between the model and supervision even at zero displacement due to inherent reconstruction challenges. We observe that <strong>Pixel</strong> loss fails to recover the correct pose as the shift increases, often drifting the asset out of frame. In contrast, <strong>SpectralSplats (Ours)</strong> remains stable and maintains a coherent structure across all displacement levels. These observations are further reflected in our quantitative evaluations of PSNR, SSIM, and LPIPS metrics for both training and novel views.
-      </div>
-
-      <div class="dog-card" style="grid-column: 1 / -1; max-width: 850px; margin: 0 auto 50px;">
-        <div class="ablation-grid" style="grid-template-columns: 50px repeat(5, 1fr);">
-          <div></div>
-          <div class="misalignment-arrow-container">
-            <span style="font-size: 0.9rem; font-weight: 700; color: var(--muted);">Level of misalignment</span>
-            <div class="arrow-line"><div class="arrow-head"></div></div>
-          </div>
-          
-          <div class="method-label vertical-label">Appearance-based loss</div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/pixel_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/pixel_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/pixel_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/pixel_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/pixel_step_final.mp4"></video></div>
-          
-          <div class="method-label vertical-label">SpectralSplats (ours)</div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.0/spectral_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.2/spectral_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.4/spectral_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.6/spectral_step_final.mp4"></video></div>
-          <div class="grid-item"><video autoplay loop muted playsinline><source src="static/page_gifs/hound/0.8/spectral_step_final.mp4"></video></div>
-        </div>
       </div>
 
       <h3 class="tracking-section-title">SC4D Tracking</h3>
